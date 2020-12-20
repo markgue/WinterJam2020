@@ -61,10 +61,8 @@ class Character : MonoBehaviour, ISelectable
         if (command is MovementOrder)
         {
             MovementOrder mvt = command as MovementOrder;
-            Vector3.MoveTowards(transform.position, 
-                new Vector3(mvt.Destination.x, transform.position.y, mvt.Destination.y), 
-                movementSpeed * Time.deltaTime);
-            Debug.Log("Moving towards" + mvt.Destination);
+            Vector3 dest = new Vector3(mvt.Destination.x, transform.position.y, mvt.Destination.y);
+            transform.position += Time.deltaTime * movementSpeed * (dest - transform.position);
         }
     }
 
@@ -81,6 +79,7 @@ class Character : MonoBehaviour, ISelectable
                 new Vector2(transform.position.x, transform.position.z), mvt.Destination) <= mvt.Tolerance)
             {
                 isCurrentTaskDone = true;
+                Debug.Log("Movement finished");
             }
         }
     }
