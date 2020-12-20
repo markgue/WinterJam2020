@@ -7,5 +7,41 @@ using UnityEngine;
 /// </summary>
 class SelectionManager : MonoBehaviour
 {
+    public ISelectable Selection
+    {
+        get; private set;
+    }
 
+    private void Update()
+    {
+        // LMB to select, as all RTS should have
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                UnSelectAll();
+                ISelectable selectable = hit.collider.gameObject.GetComponent<ISelectable>();
+                if (selectable != null)
+                {
+                    Debug.Log("Selected");
+                    selectable.IsSelected = true;
+                    Selection = selectable;
+                }
+            }
+        }
+        // Without interaction, RMB would just issue a movement order
+
+    }
+
+    private void UnSelectAll()
+    {
+        if (Selection != null)
+        {
+            Debug.Log("Unselect all");
+            Selection.IsSelected = false;
+        }
+        Selection = null;
+    }
 }

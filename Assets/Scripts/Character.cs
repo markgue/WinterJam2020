@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour, ISelectable
+class Character : MonoBehaviour, ISelectable
 {
     [SerializeField]
     private float movementSpeed = 1.0f;
+    [SerializeField]
+    private Material[] materials;
+
+    private Renderer visual = null;
 
     private bool isSelected;
     public bool IsSelected
@@ -17,9 +21,21 @@ public class Character : MonoBehaviour, ISelectable
         set
         {
             // Apply tint accordingly
+            if (value)
+            {
+                visual.material = materials[1];
+            }
+            else
+            {
+                visual.material = materials[0];
+            }
             isSelected = value;
         }
     }
 
-
+    private void Start()
+    {
+        visual = gameObject.GetComponent<Renderer>();
+        IsSelected = false;
+    }
 }

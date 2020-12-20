@@ -4,5 +4,5 @@ using UnityEngine;
 
 interface ISelectable
 {
-    public bool IsSelected { get; set; }
+    bool IsSelected { get; set; }
 }
