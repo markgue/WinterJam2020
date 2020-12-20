@@ -15,4 +15,14 @@ public class CharacterController : MonoBehaviour
     {
         
     }
+
+    #region Movement
+    // TODO: Simple vector based movement
+    // TODO: Integrate animation
+    #endregion
+
+    #region Interaction
+    // TODO: Abstract interaction
+    // TODO: Integrate animation
+    #endregion
 }
