@@ -32,7 +32,10 @@ class SelectionManager : MonoBehaviour
             }
         }
         // Without interaction, RMB would just issue a movement order
+        if (Input.GetMouseButtonDown(1))
+        {
 
+        }
     }
 
     private void UnSelectAll()

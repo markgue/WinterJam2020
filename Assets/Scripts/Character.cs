@@ -10,6 +10,7 @@ class Character : MonoBehaviour, ISelectable
     private Material[] materials;
 
     private Renderer visual = null;
+    public Queue<Command> CommandQuque = new Queue<Command>();
 
     private bool isSelected;
     public bool IsSelected
