@@ -25,16 +25,23 @@ class SelectionManager : MonoBehaviour
                 ISelectable selectable = hit.collider.gameObject.GetComponent<ISelectable>();
                 if (selectable != null)
                 {
-                    Debug.Log("Selected");
                     selectable.IsSelected = true;
                     Selection = selectable;
                 }
             }
         }
         // Without interaction, RMB would just issue a movement order
+        // Refactor later
         if (Input.GetMouseButtonDown(1))
         {
-
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity) && Selection is Character)
+            {
+                Character character = Selection as Character;
+                character.CommandQueue.Enqueue(new MovementOrder(new Vector2(hit.point.x, hit.point.z), 0.01f));
+                Debug.Log("Movement order issued");
+            }
         }
     }
 
@@ -42,7 +49,6 @@ class SelectionManager : MonoBehaviour
     {
         if (Selection != null)
         {
-            Debug.Log("Unselect all");
             Selection.IsSelected = false;
         }
         Selection = null;

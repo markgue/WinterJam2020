@@ -10,7 +10,9 @@ class Character : MonoBehaviour, ISelectable
     private Material[] materials;
 
     private Renderer visual = null;
-    public Queue<Command> CommandQuque = new Queue<Command>();
+    public Queue<Command> CommandQueue = new Queue<Command>();
+    private bool isCurrentTaskDone;
+    private Command currentCommand;
 
     private bool isSelected;
     public bool IsSelected
@@ -38,5 +40,48 @@ class Character : MonoBehaviour, ISelectable
     {
         visual = gameObject.GetComponent<Renderer>();
         IsSelected = false;
+        isCurrentTaskDone = true;
+    }
+
+    private void Update()
+    {
+        // Keep popping orders from the queue
+        if (isCurrentTaskDone && CommandQueue.Count > 0)
+        {
+            isCurrentTaskDone = false;
+            currentCommand = CommandQueue.Dequeue();
+        }
+
+        ExecuteCommand(currentCommand);
+        CheckCompletion(currentCommand);
+    }
+
+    private void ExecuteCommand(Command command)
+    {
+        if (command is MovementOrder)
+        {
+            MovementOrder mvt = command as MovementOrder;
+            Vector3.MoveTowards(transform.position, 
+                new Vector3(mvt.Destination.x, transform.position.y, mvt.Destination.y), 
+                movementSpeed * Time.deltaTime);
+            Debug.Log("Moving towards" + mvt.Destination);
+        }
+    }
+
+    private void CheckCompletion(Command command)
+    {
+        if (command == null)
+        {
+            isCurrentTaskDone = true;
+        }
+        if (command is MovementOrder)
+        {
+            MovementOrder mvt = command as MovementOrder;
+            if (Vector2.Distance(
+                new Vector2(transform.position.x, transform.position.z), mvt.Destination) <= mvt.Tolerance)
+            {
+                isCurrentTaskDone = true;
+            }
+        }
     }
 }
