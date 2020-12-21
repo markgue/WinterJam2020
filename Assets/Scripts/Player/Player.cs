@@ -8,12 +8,12 @@ class Player : MonoBehaviour {
     Vector3 gVelocity;
     public float g = 9.8f;
 
-    // public Transform groundChecker;
     public float groundBuffer = 0.4f;
     public LayerMask groundMask;
 
-    // private bool grounded;
-    // TODO: figure out how to implement player's direction
+    [SerializeField]
+    private Transform groundChecker;
+    private bool grounded;
     public Vector3 myDirection = new Vector3(1, 0, 0);
 
     public Item ItemHolding = null;
@@ -30,7 +30,7 @@ class Player : MonoBehaviour {
     void Update() 
     {
         // this game won't need ground checking.
-        // grounded = Physics.CheckSphere(groundChecker.position, groundBuffer, groundMask
+        grounded = Physics.CheckSphere(groundChecker.position, groundBuffer, groundMask);
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -41,7 +41,7 @@ class Player : MonoBehaviour {
 
         gVelocity.y -= g * Time.deltaTime;
 
-        if (/*grounded &&*/ gVelocity.y <= 0)
+        if (grounded && gVelocity.y <= 0)
         {
             gVelocity.y = -0.1f;
         }
