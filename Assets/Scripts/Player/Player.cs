@@ -40,7 +40,8 @@ class Player : MonoBehaviour {
 
         gVelocity.y -= g * Time.deltaTime;
 
-        if (/*grounded &&*/ gVelocity.y <= 0) {
+        if (/*grounded &&*/ gVelocity.y <= 0)
+        {
             gVelocity.y = -0.1f;
         }
 
