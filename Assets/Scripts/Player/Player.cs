@@ -48,7 +48,6 @@ class Player : MonoBehaviour {
 
         if (Input.GetKeyDown(PickAndThrowKey))
         {
-            Debug.Log("Action triggered");
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
