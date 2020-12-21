@@ -17,6 +17,7 @@ class Player : MonoBehaviour {
     public Vector3 myDirection = new Vector3(1, 0, 0);
 
     public Item ItemHolding = null;
+    [SerializeField]
     private float grabbingRange = 2.0f;
     public KeyCode PickAndThrowKey = KeyCode.E;
     [SerializeField]
