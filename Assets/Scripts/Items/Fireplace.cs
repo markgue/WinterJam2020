@@ -10,21 +10,10 @@ class Fireplace : MonoBehaviour
 {
     [SerializeField]
     private Collider zoneOfDestruction;
-    public float DestroyTime = 30.0f;
-
-    struct ItemOnFire
-    {
-        public ItemOnFire(Item item, float time)
-        {
-            this.item = item;
-            remainingTime = time;
-        }
-        public Item item;
-        public float remainingTime;
-    }
+    public float DPS = 10f;
 
     [SerializeField]
-    private List<ItemOnFire> itemsOnFire = new List<ItemOnFire>();
+    private List<Item> itemsOnFire = new List<Item>();
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -33,18 +22,9 @@ class Fireplace : MonoBehaviour
         {
             Debug.Log("Item is put in fire!");
             // Some visual effect would be nice
-            bool isInList = false;
-            foreach (ItemOnFire f in itemsOnFire)
+            if (!itemsOnFire.Contains(target))
             {
-                if (target == f.item)
-                {
-                    isInList = true;
-                }
-            }
-            if (!isInList)
-            {
-                ItemOnFire fire = new ItemOnFire(target, DestroyTime);
-                itemsOnFire.Add(fire);
+                itemsOnFire.Add(target);
             }
         }
     }
@@ -53,15 +33,13 @@ class Fireplace : MonoBehaviour
     {
         for (int i = 0; i < itemsOnFire.Count; i++)
         {
-            ItemOnFire fire = itemsOnFire[i];
-            fire.remainingTime = fire.remainingTime - Time.unscaledDeltaTime;
-            Debug.Log(fire.remainingTime);
-            if (fire.remainingTime < 0f)
+            Item item = itemsOnFire[i];
+            item.health -= Time.deltaTime * DPS;
+            if (item.health < 0)
             {
-                Debug.Log("Item destroyed in fire");
-                Destroy(fire.item.gameObject);
-                itemsOnFire.Remove(fire);
+                itemsOnFire.RemoveAt(i);
             }
+            Debug.Log(item.health);
         }
     }
 }
