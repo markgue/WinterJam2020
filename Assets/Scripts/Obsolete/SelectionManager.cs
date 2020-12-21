@@ -2,55 +2,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Singleton RTS-style selection manager
-/// </summary>
-class SelectionManager : MonoBehaviour
+namespace Obsolete
 {
-    public ISelectable Selection
+    /// <summary>
+    /// Singleton RTS-style selection manager
+    /// </summary>
+    class SelectionManager : MonoBehaviour
     {
-        get; private set;
-    }
-
-    private void Update()
-    {
-        // LMB to select, as all RTS should have
-        if (Input.GetMouseButtonDown(0))
+        public ISelectable Selection
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            get; private set;
+        }
+
+        private void Update()
+        {
+            // LMB to select, as all RTS should have
+            if (Input.GetMouseButtonDown(0))
             {
-                UnSelectAll();
-                ISelectable selectable = hit.collider.gameObject.GetComponent<ISelectable>();
-                if (selectable != null)
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
                 {
-                    selectable.IsSelected = true;
-                    Selection = selectable;
+                    UnSelectAll();
+                    ISelectable selectable = hit.collider.gameObject.GetComponent<ISelectable>();
+                    if (selectable != null)
+                    {
+                        selectable.IsSelected = true;
+                        Selection = selectable;
+                    }
+                }
+            }
+            // Without interaction, RMB would just issue a movement order
+            // Refactor later
+            if (Input.GetMouseButtonDown(1))
+            {
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity) && Selection is Character)
+                {
+                    Character character = Selection as Character;
+                    character.CommandQueue.Enqueue(new MovementOrder(new Vector2(hit.point.x, hit.point.z), 0.01f));
+                    Debug.Log("Movement order issued");
                 }
             }
         }
-        // Without interaction, RMB would just issue a movement order
-        // Refactor later
-        if (Input.GetMouseButtonDown(1))
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity) && Selection is Character)
-            {
-                Character character = Selection as Character;
-                character.CommandQueue.Enqueue(new MovementOrder(new Vector2(hit.point.x, hit.point.z), 0.01f));
-                Debug.Log("Movement order issued");
-            }
-        }
-    }
 
-    private void UnSelectAll()
-    {
-        if (Selection != null)
+        private void UnSelectAll()
         {
-            Selection.IsSelected = false;
+            if (Selection != null)
+            {
+                Selection.IsSelected = false;
+            }
+            Selection = null;
         }
-        Selection = null;
     }
 }

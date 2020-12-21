@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract class Interactable
+namespace Obsolete
 {
-    public abstract void Pickup();
+    abstract class Interactable
+    {
+        public abstract void Pickup();
 
-    public abstract void PutDown();
+        public abstract void PutDown();
+    }
 }
+

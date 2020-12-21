@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-interface ISelectable
+namespace Obsolete
 {
-    bool IsSelected { get; set; }
+    interface ISelectable
+    {
+        bool IsSelected { get; set; }
+    }
 }
