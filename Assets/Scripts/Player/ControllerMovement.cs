@@ -16,7 +16,10 @@ public class ControllerMovement : MonoBehaviour {
     public float groundBuffer = 0.4f;
     public LayerMask groundMask;
 
-    private bool grounded;
+    // private bool grounded;
+
+    // TODO: figure out how to implement player's direction
+    public Vector3 myDirection = new Vector3(1, 0, 0);
 
     // Update is called once per frame
     void Update() {
@@ -33,7 +36,7 @@ public class ControllerMovement : MonoBehaviour {
 
         gVelocity.y -= g * Time.deltaTime;
 
-        if (grounded && gVelocity.y <= 0) {
+        if (/*grounded &&*/ gVelocity.y <= 0) {
             gVelocity.y = -0.1f;
         }
 
