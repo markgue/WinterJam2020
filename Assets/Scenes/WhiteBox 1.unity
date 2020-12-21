@@ -802,6 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439da8ce83b12864194adeb25647907d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 1
 --- !u!54 &550102830
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1017,7 +1018,7 @@ GameObject:
   - component: {fileID: 946414955}
   - component: {fileID: 946414959}
   m_Layer: 0
-  m_Name: Fire
+  m_Name: Fireplace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1110,7 +1111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoneOfDestruction: {fileID: 946414955}
-  DestroyTime: 1
+  DPS: 1
+  itemsOnFire: []
 --- !u!1 &989926026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,6 +1348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439da8ce83b12864194adeb25647907d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 1
 --- !u!65 &1240987937
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1469,6 +1472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439da8ce83b12864194adeb25647907d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 1
 --- !u!65 &1570660319
 BoxCollider:
   m_ObjectHideFlags: 0
