@@ -675,6 +675,9 @@ MonoBehaviour:
   throwForce: 1000
   grabRadius: 1.5
   grabPoint: {fileID: 2134864914}
+  itemMask:
+    serializedVersion: 2
+    m_Bits: 1024
   hasAxe: 0
 --- !u!136 &332571237
 CapsuleCollider:
@@ -2066,8 +2069,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
-  hitRadius: 0
-  hitScale: 0
+  hoverToolTip: {fileID: 0}
+  hoverHeight: 0
 --- !u!1 &1930179712
 GameObject:
   m_ObjectHideFlags: 0

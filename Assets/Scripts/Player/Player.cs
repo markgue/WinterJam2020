@@ -30,6 +30,7 @@ class Player : MonoBehaviour {
     private float grabRadius;
     [SerializeField]
     private Transform grabPoint;
+    public LayerMask itemMask;
 
     public bool hasAxe = false;
 
@@ -64,6 +65,11 @@ class Player : MonoBehaviour {
 
         controller.Move(gVelocity * Time.deltaTime);
 
+        Collider[] hitItems = Physics.OverlapSphere(grabPoint.position, grabRadius, itemMask);
+        foreach (Collider it in hitItems) {
+            it.gameObject.GetComponent<Item>().Hover();
+        }
+
         if (Input.GetKeyDown(PickAndThrowKey))
         {
             if (ItemHolding != null) {
@@ -77,7 +83,6 @@ class Player : MonoBehaviour {
                 Debug.Log("item thrown");
             }
             else {
-                Collider[] hitItems = Physics.OverlapSphere(grabPoint.position, grabRadius);
                 if (hitItems.Length > 0) {
                     Item target = hitItems[0].gameObject.GetComponent<Item>();
                     if (target != null) {
