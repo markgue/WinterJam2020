@@ -53,7 +53,7 @@ public class Tree : MonoBehaviour
             timer = (timer + Time.deltaTime * slideSpeed) % maxTime;
 
             // update UI
-            qteUI.GetComponent<ChopUI>().timer = (timer > 50)? 100-timer : timer;
+            qteUI.GetComponent<ChopUI>().NewTime((timer > 50)? 100-timer : timer);
             qteUI.SetActive(true);
 
             // player chops
@@ -72,6 +72,8 @@ public class Tree : MonoBehaviour
                 }
 
                 progress -= rawDamage;
+
+                timer = 0;
             }
 
             // update progress
@@ -82,15 +84,16 @@ public class Tree : MonoBehaviour
             else {
                 // notify animator current progress
                 for (int i = 0; i < chkPoints.Length; i++) {
-                    if (timer >= chkPoints[i]) {
+                    if (progress <= chkPoints[i]) {
                         parts[i].SetActive(false);
                     }
                 }
             }
         }
         else {
-            qteUI.SetActive(false);
             timer = 0;
+            qteUI.GetComponent<ChopUI>().NewTime(timer);
+            qteUI.SetActive(false);
         }
     }
 }

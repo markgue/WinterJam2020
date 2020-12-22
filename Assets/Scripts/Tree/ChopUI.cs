@@ -9,14 +9,22 @@ public class ChopUI : MonoBehaviour
     private Gradient colorGradient;
 
     [SerializeField]
-    private GameObject slider, fill;
+    private Slider slider;
+    [SerializeField]
+    private Image fill;
 
-    public float timer;
+    //public float timer;
 
-    // Update is called once per frame
-    void Update()
-    {
-        slider.GetComponent<Slider>().value = timer;
-        fill.GetComponent<Image>().color = colorGradient.Evaluate(timer / slider.GetComponent<Slider>().maxValue);
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //    slider.value = timer;
+    //    fill.color = colorGradient.Evaluate(timer / slider.maxValue);
+    //}
+
+    public void NewTime(float timer) {
+        slider.value = timer;
+        fill.color = colorGradient.Evaluate(slider.normalizedValue);
+        Debug.Log(colorGradient.Evaluate(slider.normalizedValue));
     }
 }
