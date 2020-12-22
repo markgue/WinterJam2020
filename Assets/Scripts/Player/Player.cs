@@ -25,6 +25,12 @@ class Player : MonoBehaviour {
     [SerializeField]
     private float throwForce = 10.0f;
 
+    // new grab system
+    [SerializeField]
+    private float grabRadius;
+    [SerializeField]
+    private Transform grabPoint;
+
     public bool hasAxe = false;
 
     // Handles inputs in Update function once per frame
@@ -55,17 +61,22 @@ class Player : MonoBehaviour {
 
         if (Input.GetKeyDown(PickAndThrowKey))
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-            {
-                if (ItemHolding == null)
-                {
-                    Item target = hit.collider.gameObject.GetComponent<Item>();
-                    if (target != null)
-                    {
-                        if (Vector3.Distance(target.transform.position, transform.position) <= grabbingRange)
-                        {
+            if (ItemHolding != null) {
+                // throw current holding item towards the point
+                Vector3 direction = transform.forward;
+                ItemHolding.transform.SetParent(null);
+                ItemHolding.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                ItemHolding.gameObject.GetComponent<Rigidbody>().AddForce(direction.normalized * throwForce);
+                ItemHolding.gameObject.GetComponent<Item>().Put();
+                ItemHolding = null;
+                Debug.Log("item thrown");
+            }
+            else {
+                Collider[] hitItems = Physics.OverlapSphere(grabPoint.position, grabRadius);
+                if (hitItems.Length > 0) {
+                    Item target = hitItems[0].gameObject.GetComponent<Item>();
+                    if (target != null) {
+                        if (Vector3.Distance(target.transform.position, transform.position) <= grabbingRange) {
                             target.transform.position = holdingPos.position;
                             target.transform.SetParent(holdingPos);
                             ItemHolding = target;
@@ -75,18 +86,41 @@ class Player : MonoBehaviour {
                         }
                     }
                 }
-                else
-                {
-                    // throw current holding item towards the point
-                    Vector3 direction = hit.point - holdingPos.position;
-                    ItemHolding.transform.SetParent(null);
-                    ItemHolding.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-                    ItemHolding.gameObject.GetComponent<Rigidbody>().AddForce(direction.normalized * throwForce);
-                    ItemHolding.gameObject.GetComponent<Item>().Put();
-                    ItemHolding = null;
-                    Debug.Log("item thrown");
-                }
             }
+
+            //RaycastHit hit;
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            //if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            //{
+            //    if (ItemHolding == null)
+            //    {
+            //        Item target = hit.collider.gameObject.GetComponent<Item>();
+            //        if (target != null)
+            //        {
+            //            if (Vector3.Distance(target.transform.position, transform.position) <= grabbingRange)
+            //            {
+            //                target.transform.position = holdingPos.position;
+            //                target.transform.SetParent(holdingPos);
+            //                ItemHolding = target;
+            //                ItemHolding.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            //                target.Take();
+            //                Debug.Log("Item picked up");
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        // throw current holding item towards the point
+            //        Vector3 direction = hit.point - holdingPos.position;
+            //        ItemHolding.transform.SetParent(null);
+            //        ItemHolding.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            //        ItemHolding.gameObject.GetComponent<Rigidbody>().AddForce(direction.normalized * throwForce);
+            //        ItemHolding.gameObject.GetComponent<Item>().Put();
+            //        ItemHolding = null;
+            //        Debug.Log("item thrown");
+            //    }
+            //}
         }
     }
 }

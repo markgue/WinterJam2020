@@ -81,7 +81,7 @@ public class Tree : MonoBehaviour
                     return;
                 }
                 else {
-                    // notify animator current progress
+                    // animate the progress change
                     for (int i = 0; i < chkPoints.Length; i++) {
                         if (progress <= chkPoints[i]) {
                             parts[i].SetActive(false);
