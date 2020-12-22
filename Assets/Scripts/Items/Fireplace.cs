@@ -8,8 +8,6 @@ using UnityEngine;
 /// </summary>
 class Fireplace : MonoBehaviour
 {
-    [SerializeField]
-    private Collider zoneOfDestruction;
     public float DPS = 10f;
 
     [SerializeField]
