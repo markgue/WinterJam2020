@@ -45,8 +45,13 @@ class Player : MonoBehaviour {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z;
+        Vector3 move = new Vector3(x, 0, z);
         move *= speed * Time.deltaTime;
+
+        if (move != Vector3.zero) {
+            Quaternion rotation = Quaternion.LookRotation(move, Vector3.up);
+            transform.rotation = rotation;
+        }
 
         controller.Move(move);
 
