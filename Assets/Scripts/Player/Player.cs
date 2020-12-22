@@ -25,8 +25,13 @@ class Player : MonoBehaviour {
     [SerializeField]
     private float throwForce = 10.0f;
 
+    public bool hasAxe = false;
 
     // Handles inputs in Update function once per frame
+    private void Start() {
+        GameManager.instance.playerObject = gameObject;
+    }
+
     void Update() 
     {
         // this game won't need ground checking.
@@ -65,6 +70,7 @@ class Player : MonoBehaviour {
                             target.transform.SetParent(holdingPos);
                             ItemHolding = target;
                             ItemHolding.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                            target.Take();
                             Debug.Log("Item picked up");
                         }
                     }
@@ -76,6 +82,7 @@ class Player : MonoBehaviour {
                     ItemHolding.transform.SetParent(null);
                     ItemHolding.gameObject.GetComponent<Rigidbody>().isKinematic = false;
                     ItemHolding.gameObject.GetComponent<Rigidbody>().AddForce(direction.normalized * throwForce);
+                    ItemHolding.gameObject.GetComponent<Item>().Put();
                     ItemHolding = null;
                     Debug.Log("item thrown");
                 }

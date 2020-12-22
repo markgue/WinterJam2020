@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-class Item : MonoBehaviour
+public class Item : MonoBehaviour
 {
     public float health = 1.0f;
 
     public LayerMask playerLayer;
 
+    // parameters
     [SerializeField]
     private float hitRadius = 2;
     [SerializeField]
@@ -21,7 +22,7 @@ class Item : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // find player
+        // kick mechanism
         Collider[] hits = Physics.OverlapSphere(transform.position, hitRadius, playerLayer);
         if (hits.Length != 0) {
             // when there's hit: kick myself
@@ -31,4 +32,9 @@ class Item : MonoBehaviour
         }
 
     }
+
+    
+    // player message ///////////////////////////////////////////////////////
+    virtual public void Take() {}
+    virtual public void Put() {}
 }
