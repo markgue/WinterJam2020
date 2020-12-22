@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Elf Avatar Mask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/Root
+    m_Weight: 1
+  - m_Path: Armature/Root/Bottom Torso
+    m_Weight: 0
+  - m_Path: Armature/Root/Top Torso
+    m_Weight: 1
+  - m_Path: Armature/Root/Top Torso/Arm.L
+    m_Weight: 1
+  - m_Path: Armature/Root/Top Torso/Arm.L/Hand.L
+    m_Weight: 1
+  - m_Path: Armature/Root/Top Torso/Arm.R
+    m_Weight: 1
+  - m_Path: Armature/Root/Top Torso/Arm.R/Hand.R
+    m_Weight: 1
+  - m_Path: Armature/Root/Top Torso/Head
+    m_Weight: 1
+  - m_Path: Armature/Root/Top Torso/Head/Hat.001
+    m_Weight: 1
+  - m_Path: Armature/Root/Top Torso/Head/Hat.001/Hat.002
+    m_Weight: 1
+  - m_Path: Armature/Root/Top Torso/Head/Hat.001/Hat.002/Hat.003
+    m_Weight: 1
+  - m_Path: Cylinder
+    m_Weight: 1

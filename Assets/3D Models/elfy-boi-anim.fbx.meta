@@ -1,8 +1,11 @@
 fileFormatVersion: 2
-guid: 60f29a69a78c97b4c8273585c9f327dc
+guid: 3da1074c0fbc41e40a2f5db3bfe387d4
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
+  - first:
+      74: 5964584417730689840
+    second: Armature|Chopping
   - first:
       74: -8945691123924629249
     second: Armature|Idle
@@ -16,14 +19,8 @@ ModelImporter:
       74: 9083654474561383684
     second: Armature|Throw
   - first:
-      74: 4770922592455253902
-    second: Armature|Throw (1)
-  - first:
-      74: -7164225777447543084
-    second: Armature|Pickup (1)
-  - first:
-      74: 6503710843971187167
-    second: Armature|Run (1)
+      74: -520621482062533251
+    second: Armature|Chopping (1)
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -53,6 +50,35 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
+      name: Armature|Chopping
+      takeName: Armature|Chopping
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
       name: Armature|Idle
       takeName: Armature|Idle
       internalID: 0
@@ -64,7 +90,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -219,7 +245,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: 
+    rootMotionBoneName: Root
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -227,7 +253,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
