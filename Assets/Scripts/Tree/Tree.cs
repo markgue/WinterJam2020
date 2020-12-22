@@ -53,7 +53,7 @@ public class Tree : MonoBehaviour
         distanceFromPlayer = diff2.magnitude;
 
         // if player has axe and player is close enough
-        if (/*TreeManager.instance.playerHasAxe &&*/ distanceFromPlayer <= chopRadius) {
+        if (TreeManager.instance.playerHasAxe && distanceFromPlayer <= chopRadius) {
             UpdateTimer((timer + Time.deltaTime * slideSpeed) % maxTime);
             qteUI.SetActive(true);
 
