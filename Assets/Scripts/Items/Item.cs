@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    public string itemId;
+
     public float health = 1.0f;
 
     public LayerMask playerLayer;
