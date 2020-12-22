@@ -2288,6 +2288,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1681190224768447801, guid: d8a6ed3283c38fc41a1475358e3a637c,
+        type: 3}
+      propertyPath: chopCD
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681190224768447801, guid: d8a6ed3283c38fc41a1475358e3a637c,
+        type: 3}
+      propertyPath: slideSpeed
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2878222229786094268, guid: d8a6ed3283c38fc41a1475358e3a637c,
         type: 3}
       propertyPath: m_RootOrder
@@ -2296,7 +2306,7 @@ PrefabInstance:
     - target: {fileID: 2878222229786094268, guid: d8a6ed3283c38fc41a1475358e3a637c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.03
+      value: 16.46
       objectReference: {fileID: 0}
     - target: {fileID: 2878222229786094268, guid: d8a6ed3283c38fc41a1475358e3a637c,
         type: 3}

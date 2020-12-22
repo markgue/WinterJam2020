@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Tree : MonoBehaviour
 {
     private float progress = 100;
-    private bool activated = false;
+    private bool frozen = false;
 
     // progress tracker
     [SerializeField]
@@ -21,11 +21,13 @@ public class Tree : MonoBehaviour
     [SerializeField]
     private GameObject qteUI;
 
-    // settings
+    // control settings
     [SerializeField]
     private KeyCode chopKey = KeyCode.Q;
     [SerializeField]
     private float chopRadius = 1;
+    [SerializeField]
+    private float chopCD = 0;
 
     // part destruction
     [SerializeField]
@@ -36,11 +38,13 @@ public class Tree : MonoBehaviour
 
     // system messages //////////////////////////////////////////////
     private void Start() {
-        activated = false;
+        frozen = false;
         progress = maxProgress;
     }
 
     private void Update() {
+        if (frozen) return;
+        
         float distanceFromPlayer = 0;
 
         // calculate x-z distance from player
@@ -49,11 +53,8 @@ public class Tree : MonoBehaviour
         distanceFromPlayer = diff2.magnitude;
 
         // if player has axe and player is close enough
-        if (TreeManager.instance.playerHasAxe && distanceFromPlayer <= chopRadius) {
-            timer = (timer + Time.deltaTime * slideSpeed) % maxTime;
-
-            // update UI
-            qteUI.GetComponent<ChopUI>().NewTime((timer > 50)? 100-timer : timer);
+        if (/*TreeManager.instance.playerHasAxe &&*/ distanceFromPlayer <= chopRadius) {
+            UpdateTimer((timer + Time.deltaTime * slideSpeed) % maxTime);
             qteUI.SetActive(true);
 
             // player chops
@@ -73,27 +74,50 @@ public class Tree : MonoBehaviour
 
                 progress -= rawDamage;
 
-                timer = 0;
-            }
-
-            // update progress
-            if (progress <= 0) {
-                // notify tree manager the tree is down
-                TreeManager.instance.TreeGotChopped(gameObject);
-            }
-            else {
-                // notify animator current progress
-                for (int i = 0; i < chkPoints.Length; i++) {
-                    if (progress <= chkPoints[i]) {
-                        parts[i].SetActive(false);
+                // update progress
+                if (progress <= 0) {
+                    // notify tree manager the tree is down
+                    TreeManager.instance.TreeGotChopped(gameObject);
+                    return;
+                }
+                else {
+                    // notify animator current progress
+                    for (int i = 0; i < chkPoints.Length; i++) {
+                        if (progress <= chkPoints[i]) {
+                            parts[i].SetActive(false);
+                        }
                     }
+
+                    // freeze slide bar
+                    StartCoroutine(ChopCoolDown(chopCD));
                 }
             }
         }
         else {
-            timer = 0;
-            qteUI.GetComponent<ChopUI>().NewTime(timer);
+            UpdateTimer(0);
             qteUI.SetActive(false);
         }
+    }
+
+
+    // timer management /////////////////////////////////////////////////
+    private void UpdateTimer(float newTime) {
+        timer = newTime;
+        qteUI.GetComponent<ChopUI>().NewTime((newTime > 50)? 100 - newTime : newTime);
+    }
+
+
+    // coroutine ////////////////////////////////////////////////////////
+    private IEnumerator ChopCoolDown(float coolDown) {
+        frozen = true;
+        
+        float CD = coolDown;
+        while (CD >= 0) {
+            CD -= Time.deltaTime;
+            yield return null;
+        }
+
+        frozen = false;
+        UpdateTimer(0);
     }
 }
