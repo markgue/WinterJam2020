@@ -24,6 +24,7 @@ public class Tree : MonoBehaviour
     // control settings
     [SerializeField]
     private KeyCode chopKey = KeyCode.Q;
+    private KeyCode chopJoystick = KeyCode.Q;
     [SerializeField]
     private float chopRadius = 1;
     [SerializeField]
@@ -58,7 +59,7 @@ public class Tree : MonoBehaviour
             qteUI.SetActive(true);
 
             // player chops
-            if (Input.GetKeyDown(chopKey)) {
+            if (Input.GetKeyDown(chopKey) || Input.GetKeyDown(chopJoystick)) {
                 int rawDamage = 0;
                 
                 // check time interval

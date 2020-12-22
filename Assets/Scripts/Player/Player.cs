@@ -20,6 +20,7 @@ class Player : MonoBehaviour {
     [SerializeField]
     private float grabbingRange = 2.0f;
     public KeyCode PickAndThrowKey = KeyCode.E;
+    public KeyCode PickAndThrowJoystick = KeyCode.E;
     [SerializeField]
     private Transform holdingPos;
     [SerializeField]
@@ -70,7 +71,7 @@ class Player : MonoBehaviour {
             it.gameObject.GetComponent<Item>().Hover();
         }
 
-        if (Input.GetKeyDown(PickAndThrowKey))
+        if (Input.GetKeyDown(PickAndThrowKey) || Input.GetKeyDown(PickAndThrowJoystick))
         {
             if (ItemHolding != null) {
                 // throw current holding item towards the point
