@@ -92,6 +92,8 @@ public class Tree : MonoBehaviour
                     // freeze slide bar
                     StartCoroutine(ChopCoolDown(chopCD));
                 }
+
+                GameManager.instance.playerObject.GetComponent<Animator>().SetTrigger("Chop");
             }
         }
         else {
