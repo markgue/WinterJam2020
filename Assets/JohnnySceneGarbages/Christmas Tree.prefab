@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1681190224246640366}
   - component: {fileID: 1681190224246640361}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,6 +86,8 @@ GameObject:
   - component: {fileID: 1681190224690070208}
   - component: {fileID: 1681190224690070211}
   - component: {fileID: 1681190224690070210}
+  - component: {fileID: 3621593544314768563}
+  - component: {fileID: 6342412726450716400}
   m_Layer: 5
   m_Name: Chop QTE Canvas
   m_TagString: Untagged
@@ -175,6 +177,62 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3621593544314768563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681190224690070220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1017129428eb3cd4ca9cf651446ae1fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 0}
+--- !u!114 &6342412726450716400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681190224690070220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 514bdbec7078e4246865bc1220a548d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorGradient:
+    serializedVersion: 2
+    key0: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
+    key1: {r: 1, g: 0.9778552, b: 0, a: 1}
+    key2: {r: 0.9433962, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 32768
+    ctime1: 58982
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 1
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  slider: {fileID: 1681190225231936949}
+  fill: {fileID: 1681190224246640361}
 --- !u!1 &1681190225231936951
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +330,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2878222229786094268}
   - component: {fileID: 1681190224768447801}
-  - component: {fileID: 1681190224768447806}
   m_Layer: 0
   m_Name: Christmas Tree
   m_TagString: Untagged
@@ -319,59 +376,16 @@ MonoBehaviour:
   critIntervalH: 55
   normIntervalL: 25
   normIntervalH: 75
-  slideSpeed: 10
+  slideSpeed: 50
   qteUI: {fileID: 1681190224690070220}
   chopKey: 113
-  chopRadius: 3
-  chopCD: 0
+  chopRadius: 4
+  chopCD: 0.5
   parts:
   - {fileID: 3112011599783001165}
   - {fileID: 3112011599061554740}
   - {fileID: 3112011598566462350}
   chkPoints: 46000000320000001e000000
---- !u!114 &1681190224768447806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2878222229786094269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 514bdbec7078e4246865bc1220a548d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colorGradient:
-    serializedVersion: 2
-    key0: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
-    key1: {r: 1, g: 0.77499247, b: 0, a: 1}
-    key2: {r: 1, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 32768
-    ctime1: 58982
-    ctime2: 61883
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 1
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 2
-  slider: {fileID: 0}
-  fill: {fileID: 0}
 --- !u!1 &6240976809308286188
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +674,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: efa77a7d8bfc551408964763a16a9a12, type: 2}
     - target: {fileID: 919132149155446097, guid: 58e142ad1f906ad4192bbf55a5ee757f,
         type: 3}
       propertyPath: m_Name
@@ -761,7 +775,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: efa77a7d8bfc551408964763a16a9a12, type: 2}
     - target: {fileID: 919132149155446097, guid: 58e142ad1f906ad4192bbf55a5ee757f,
         type: 3}
       propertyPath: m_Name
@@ -843,6 +857,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0690d50086ad38947ad9bf8c2c21123c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -6478536213147159724, guid: 767cdde1afefe7e4686eab09b78be668,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: 0690d50086ad38947ad9bf8c2c21123c,
         type: 3}
       propertyPath: m_Name
@@ -937,7 +957,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: efa77a7d8bfc551408964763a16a9a12, type: 2}
     - target: {fileID: 919132149155446097, guid: 58e142ad1f906ad4192bbf55a5ee757f,
         type: 3}
       propertyPath: m_Name

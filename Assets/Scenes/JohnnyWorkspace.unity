@@ -965,7 +965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e143b339261c28c4a8ce29404d0b67bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treeSpawnTime: 10
+  treeSpawnTime: 2
   treeSpawner: {fileID: 5616666607371007429, guid: db66d1fdf645ca648b0aa8ebcd3c26a6,
     type: 3}
   logPrefab: {fileID: 4129287198851808519, guid: c4109c156bc5c344c9548d7f05cc973f,
@@ -2071,7 +2071,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 767cdde1afefe7e4686eab09b78be668,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.277099
+      value: 5.44
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 767cdde1afefe7e4686eab09b78be668,
         type: 3}
@@ -2494,25 +2494,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Christmas Tree
       objectReference: {fileID: 0}
+    - target: {fileID: 3621593544314768563, guid: d8a6ed3283c38fc41a1475358e3a637c,
+        type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 277959092}
     m_RemovedComponents:
     - {fileID: 1681190224768447806, guid: d8a6ed3283c38fc41a1475358e3a637c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d8a6ed3283c38fc41a1475358e3a637c, type: 3}
---- !u!1 &3505408289369568087 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2878222229786094269, guid: d8a6ed3283c38fc41a1475358e3a637c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1681190224708590058}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3505408289369568088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3505408289369568087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1017129428eb3cd4ca9cf651446ae1fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraTransform: {fileID: 277959092}

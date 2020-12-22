@@ -34,9 +34,10 @@ public class TreeManager : MonoBehaviour
     // tree instance message ///////////////////////////////////////////
     // when a tree gets chopped, this method will be called
     public void TreeGotChopped(GameObject poorTree) {
-        Instantiate(treeSpawner, poorTree.transform);
+        Debug.Log("treeGotChopped() called by");
+        Debug.Log(poorTree.transform.position);
+        Instantiate(treeSpawner, poorTree.transform.position + new Vector3(0.2f, 0, 0.2f), Quaternion.identity);
+        Instantiate(logPrefab, poorTree.transform.position, Quaternion.identity);
         Destroy(poorTree);
-        // spawn a new log
-        Instantiate(logPrefab, poorTree.transform);
     }
 }

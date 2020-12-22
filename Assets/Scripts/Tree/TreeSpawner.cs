@@ -13,7 +13,7 @@ public class TreeSpawner : MonoBehaviour
     {
         timer += Time.deltaTime;
         if (timer >= TreeManager.instance.treeSpawnTime) {
-            Instantiate(treePrefab, transform);
+            Instantiate(treePrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
