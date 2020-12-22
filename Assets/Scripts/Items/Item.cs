@@ -27,7 +27,7 @@ public class Item : MonoBehaviour
         if (hits.Length != 0) {
             // when there's hit: kick myself
             foreach (Collider hit in hits) {
-                gameObject.GetComponent<Rigidbody>().AddForce((transform.position - hit.transform.position) * hitScale, ForceMode.Impulse);
+                gameObject.GetComponent<Rigidbody>().AddForce((transform.position - hit.transform.position).normalized * hitScale, ForceMode.Impulse);
             }
         }
 
