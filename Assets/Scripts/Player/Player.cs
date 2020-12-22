@@ -65,7 +65,7 @@ class Player : MonoBehaviour {
         //gVelocity.y -= g * Time.deltaTime;
         //if (grounded && gVelocity.y <= 0)
         //{
-            gVelocity.y = (grounded && gVelocity.y <= 0)? - 0.1f : g * Time.deltaTime;
+            gVelocity.y = (grounded && gVelocity.y <= 0)? - 0.1f : gVelocity.y - g * Time.deltaTime;
         //}
         controller.Move(gVelocity * Time.deltaTime);
 
