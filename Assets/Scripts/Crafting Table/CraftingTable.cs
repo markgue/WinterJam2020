@@ -1,15 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CraftingTable : MonoBehaviour
 {
+    [SerializeField]
+    private Image craftableIconImage;
+    [SerializeField]
+    private Transform craftCreationPoint;
+    [SerializeField]
+    private CraftingQTE craftingQte;
+    [SerializeField]
+    private Vector3 disperseDirection = new Vector3(-1f, 1f, 0f);
+    [SerializeField]
+    private float disperseStrength = 1.0f;
+    [SerializeField]
+    private float pullForceStrength = 1.0f;
+    [SerializeField]
+    private float pullForceRadiusStop = 1.0f;
+
     private List<Item> inputs = new List<Item>();
 
     [System.Serializable]
     public class ListWrapper
     {
         public string itemId;
+        public Sprite icon;
         public List<string> craftingMaterialsItemIds;
     }
 
@@ -17,10 +34,13 @@ public class CraftingTable : MonoBehaviour
     private List<ListWrapper> itemToCraftingMaterials;
     [SerializeField]
     private Dictionary<string, List<string>> itemToCraftingMaterialsHash;
+    private Dictionary<string, Sprite> itemToCraftingIconHash;
     private Dictionary<string, string> craftingMaterialToItemHash;
 
     private bool craftingTableActive;
     private string itemToCraftOnceActive;
+    private List<Item> activeCraftingInputs;
+    private BoxCollider stickyTrigger;
 
     // Start is called before the first frame update
     void Awake()
@@ -28,9 +48,11 @@ public class CraftingTable : MonoBehaviour
         // Create hashes for quick access of items and crafting materials
         itemToCraftingMaterialsHash = new Dictionary<string, List<string>>();
         craftingMaterialToItemHash = new Dictionary<string, string>();
+        itemToCraftingIconHash = new Dictionary<string, Sprite>();
         for (int i = 0; i < itemToCraftingMaterials.Count; i++)
         {
             ListWrapper item = itemToCraftingMaterials[i];
+            itemToCraftingIconHash[item.itemId] = item.icon;
             itemToCraftingMaterialsHash[item.itemId] = new List<string>();
             List<string> craftingMats = item.craftingMaterialsItemIds;
             for (int j = 0; j < craftingMats.Count; j++)
@@ -41,15 +63,59 @@ public class CraftingTable : MonoBehaviour
         }
         craftingTableActive = false;
         itemToCraftOnceActive = "";
+        craftableIconImage.enabled = false;
+        craftingQte.gameObject.SetActive(false);
+        stickyTrigger = GetComponent<BoxCollider>();
     }
 
-    // Update is called once per frame
+    // Todo: Handle case where more items are thrown after the proper materials are there
     void Update()
     {
         if (craftingTableActive)
         {
-            // TODO: Signal crafting QTE
-            Debug.Log("Table Active with item: " + itemToCraftOnceActive);
+            craftableIconImage.sprite = itemToCraftingIconHash[itemToCraftOnceActive];
+            craftableIconImage.enabled = true;
+            craftingQte.gameObject.SetActive(true);
+            bool success = false;
+            // Suck the materials torwards the creation point while the table is active
+            foreach(Item item in activeCraftingInputs)
+            {
+                Rigidbody itemRB = item.GetComponent<Rigidbody>();
+                itemRB.isKinematic = false;
+                Vector3 forceDirectionRaw = craftCreationPoint.position - item.transform.position;
+                if (forceDirectionRaw.magnitude >= pullForceRadiusStop)
+                {
+                    Vector3 forceDirection = forceDirectionRaw.normalized;
+                    itemRB.AddForce(forceDirection * pullForceStrength);
+                }
+            }
+
+            if (craftingQte.isQteDone(out success))
+            {
+                if (success) {
+                    // Return correct item
+                    Debug.Log("Success");
+                    foreach (Item item in activeCraftingInputs)
+                    {
+                        inputs.Remove(item);
+                        Destroy(item.gameObject);
+                    }
+                } else
+                {
+                    // Disperse items
+                    Debug.Log("Failure");
+                    foreach (Item item in activeCraftingInputs)
+                    {
+                        Rigidbody rb = item.GetComponent<Rigidbody>();
+                        rb.isKinematic = false;
+                        rb.velocity = disperseDirection * disperseStrength;
+                        StartCoroutine(stickyTableCooldown(2f));
+                        inputs.Remove(item);
+                    }
+                }
+                craftingQte.gameObject.SetActive(false);
+                craftingTableActive = false;
+            }
         } else
         {
             if (inputs.Count > 0)
@@ -61,7 +127,6 @@ public class CraftingTable : MonoBehaviour
                 foreach (Item item in inputs)
                 {
                     inputCounter += 1;
-                    Debug.Log("Item id: " + item.itemId);
                     if (currentItemId.Length == 0)
                     {
                         if (!craftingMaterialToItemHash.TryGetValue(item.itemId, out currentItemId))
@@ -80,6 +145,8 @@ public class CraftingTable : MonoBehaviour
                         // Matching item
                         craftingTableActive = true;
                         itemToCraftOnceActive = currentItemId;
+                        activeCraftingInputs = new List<Item>(inputs);
+                        stickyTrigger.enabled = false;
                     }
                 }
             }
@@ -91,7 +158,7 @@ public class CraftingTable : MonoBehaviour
         Item target = other.GetComponent<Item>();
         Rigidbody rb = other.GetComponent<Rigidbody>();
         // Ignore if the unique item already exists in the inputs list (reference)
-        if (target != null && inputs.FindIndex(x => target == x) == -1)
+        if (!craftingTableActive && target != null && inputs.FindIndex(x => target == x) == -1)
         {
             inputs.Add(target);
             if (rb != null)
@@ -109,15 +176,13 @@ public class CraftingTable : MonoBehaviour
         if (target != null)
         {
             inputs.Remove(target);
-            if (rb != null)
-            {
-                rb.isKinematic = false;
-            }
         }
     }
 
-    IEnumerator FlyTowardsPosition()
+    private IEnumerator stickyTableCooldown(float seconds)
     {
-        return null;
+        stickyTrigger.enabled = false;
+        yield return new WaitForSeconds(seconds);
+        stickyTrigger.enabled = true;
     }
 }
