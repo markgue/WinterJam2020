@@ -395,14 +395,17 @@ MonoBehaviour:
   itemToCraftingMaterials:
   - itemId: Wooden Horse
     icon: {fileID: 21300000, guid: 5e4d4191ea46bb24d8f86d4050de57d0, type: 3}
+    itemPrefab: {fileID: 0}
     craftingMaterialsItemIds:
     - Wooden Horse Leg
     - Wooden Horse Head
   - itemId: Double WOod
     icon: {fileID: 21300000, guid: 5e4d4191ea46bb24d8f86d4050de57d0, type: 3}
+    itemPrefab: {fileID: 0}
     craftingMaterialsItemIds:
     - Log
     - Log
+  stickyTrigger: {fileID: 0}
 --- !u!1 &4247928902818331217
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,7 +795,7 @@ RectTransform:
   m_GameObject: {fileID: 4247928904187075629}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.04926407}
-  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.049761657}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.049761668}
   m_Children:
   - {fileID: 4247928903273337268}
   - {fileID: 4247928903462698967}

@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439da8ce83b12864194adeb25647907d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: Axe
+  itemId: Log
   health: 1
   playerLayer:
     serializedVersion: 2

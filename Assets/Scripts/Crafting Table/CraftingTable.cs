@@ -169,7 +169,6 @@ public class CraftingTable : MonoBehaviour
         if (!craftingTableActive && target != null && inputs.FindIndex(x => target == x) == -1)
         {
             inputs.Add(target);
-            Debug.Log("Target is added to table");
             if (rb != null)
             {
                 // Assume all item the bench uses would have rigid bodies
@@ -184,18 +183,14 @@ public class CraftingTable : MonoBehaviour
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if (target != null)
         {
-            Debug.Log("Removed target from table");
             inputs.Remove(target);
-            Debug.Log("Left: " + inputs.Count);
         }
     }
 
     IEnumerator stickyTableCooldown(float seconds)
     {
         stickyTrigger.enabled = false;
-        Debug.Log("ENABLKE");
         yield return new WaitForSeconds(seconds);
         stickyTrigger.enabled = true;
-        Debug.Log("DISABLE");
     }
 }
