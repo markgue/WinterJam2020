@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     private string currentScene;
 
     // system settings 
-    public float volume { get; set; } // 0 - 1
+    [SerializeField]
+    public float volume; // 0 - 1
     [SerializeField]
     private int[] difficultySettings;
 
@@ -61,18 +62,32 @@ public class GameManager : MonoBehaviour
         maxChanceOfFail = difficultySettings[optIndex];
     }
 
+    public void SetVolume(float newVolume) {
+        volume = newVolume;
+    }
+
 
     // scene loading /////////////////////////////////////////////////
+    public bool isGameScene() {
+        return currentScene == gameScene;
+    }
+
+    public bool isFailScene() {
+        return currentScene == failScene;
+    }
+
     public void ToMenuScene() {
         currentScene = startMenu;
         SceneManager.LoadScene(currentScene);
     }
 
     public void ToGameScene() {
+        // first rest a couple of parameters
         chancesOfFail = maxChanceOfFail;
-        currentScene = gameScene;
         completionCount = 0;
         failCount = 0;
+
+        currentScene = gameScene;
         SceneManager.LoadScene(currentScene);
     }
 
@@ -87,9 +102,17 @@ public class GameManager : MonoBehaviour
     }
 
     public void ToSpecificScene(string sceneName) {
-        if (sceneName == startMenu || sceneName == gameScene || sceneName == failScene || sceneName == creditScene) {
-            currentScene = sceneName;
-            SceneManager.LoadScene(currentScene);
+        if (sceneName == startMenu) {
+            ToMenuScene();
+        }
+        else if (sceneName == gameScene) {
+            ToGameScene();
+        }
+        else if (sceneName == failScene) {
+            ToFailScene();
+        }
+        else if (sceneName == creditScene) {
+            ToCreditScene();
         }
     }
 }

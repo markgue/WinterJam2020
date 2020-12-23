@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameMusic : MonoBehaviour
 {
     [SerializeField]
-    private int ordersToCompleteBeforeMusic;
+    private int ordersToCompleteBeforeMusic; // play the music only after some amount of orders done
     [SerializeField]
     GameObject musicSource;
     

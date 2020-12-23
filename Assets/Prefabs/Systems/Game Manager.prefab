@@ -48,6 +48,7 @@ MonoBehaviour:
   gameScene: Demo
   failScene: FailScene
   creditScene: CreditScene
+  volume: 1
   difficultySettings: 050000000a00000014000000
   maxChanceOfFail: 5
   chancesOfFail: 5
