@@ -80,6 +80,7 @@ public class CraftingTable : MonoBehaviour
             // Suck the materials torwards the creation point while the table is active
             foreach(Item item in activeCraftingInputs)
             {
+                item.enabled = false; // Do not want to pick them up while they are being actively crafted
                 Rigidbody itemRB = item.GetComponent<Rigidbody>();
                 itemRB.isKinematic = false;
                 Vector3 forceDirectionRaw = craftCreationPoint.position - item.transform.position;
@@ -146,7 +147,7 @@ public class CraftingTable : MonoBehaviour
                         craftingTableActive = true;
                         itemToCraftOnceActive = currentItemId;
                         activeCraftingInputs = new List<Item>(inputs);
-                        stickyTrigger.enabled = false;
+                        // stickyTrigger.enabled = false;
                     }
                 }
             }
@@ -161,6 +162,7 @@ public class CraftingTable : MonoBehaviour
         if (!craftingTableActive && target != null && inputs.FindIndex(x => target == x) == -1)
         {
             inputs.Add(target);
+            Debug.Log("Target is added to table");
             if (rb != null)
             {
                 // Assume all item the bench uses would have rigid bodies
@@ -175,7 +177,9 @@ public class CraftingTable : MonoBehaviour
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if (target != null)
         {
+            Debug.Log("Removed target from table");
             inputs.Remove(target);
+            Debug.Log("Left: " + inputs.Count);
         }
     }
 

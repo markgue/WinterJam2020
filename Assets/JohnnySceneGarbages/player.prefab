@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 234942302717825479}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -312,9 +312,15 @@ MonoBehaviour:
   throwForce: 700
   grabRadius: 1
   grabPoint: {fileID: 8901866807851858926}
+  tableGrabOffsetMagnitude: {x: 1.5, y: 0.3}
+  tableGrabRadiusOffset: 0.5
+  tableGrabAngleDegreesThreshold: 75
   itemMask:
     serializedVersion: 2
     m_Bits: 1024
+  detectionMask:
+    serializedVersion: 2
+    m_Bits: 2048
   hasAxe: 0
 --- !u!1 &2368092418377459924
 GameObject:

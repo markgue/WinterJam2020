@@ -25,6 +25,6 @@ public class ChopUI : MonoBehaviour
     public void NewTime(float timer) {
         slider.value = timer;
         fill.color = colorGradient.Evaluate(slider.normalizedValue);
-        Debug.Log(colorGradient.Evaluate(slider.normalizedValue));
+        // Debug.Log(colorGradient.Evaluate(slider.normalizedValue));
     }
 }
