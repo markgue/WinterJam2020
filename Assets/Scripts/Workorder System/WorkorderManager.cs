@@ -15,6 +15,8 @@ public class WorkorderManager : MonoBehaviour
     // interfaces
     [SerializeField]
     private GameObject orderUI;
+    [SerializeField]
+    private Clock myClock;
 
     // lifecycle management
     public float newOrderTimer;
@@ -76,6 +78,7 @@ public class WorkorderManager : MonoBehaviour
         else {
             // update timer
             newOrderTimer -= Time.deltaTime;
+            myClock.minutes = Mathf.FloorToInt(60 - newOrderTimer / orderInterval * 60);
         }
         
         // check order deadline
