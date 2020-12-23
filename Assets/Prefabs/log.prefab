@@ -122,12 +122,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439da8ce83b12864194adeb25647907d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemId: Axe
   health: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
-  hitRadius: 1
-  hitScale: 3
+  hoverToolTip: {fileID: 0}
+  hoverHeight: 0
 --- !u!54 &3262978925029952203
 Rigidbody:
   m_ObjectHideFlags: 0
