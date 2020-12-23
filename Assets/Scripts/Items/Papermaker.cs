@@ -11,7 +11,9 @@ class Papermaker : MonoBehaviour
     private List<Item> inputs = new List<Item>();
     Item currentInput = null;
     [SerializeField]
-    private GameObject product;
+    private GameObject product1;
+    [SerializeField]
+    private GameObject product2;
     [SerializeField]
     private float taskTime;
     private float timer;
@@ -25,7 +27,8 @@ class Papermaker : MonoBehaviour
             if (timer < 0)
             {
                 // TODO: Check if the input is indeed wood
-                GameObject.Instantiate(product, OutputPoint.position, Quaternion.identity);
+                GameObject.Instantiate(product1, OutputPoint.position, Quaternion.identity);
+                GameObject.Instantiate(product2, OutputPoint.position + OutputPoint.forward, Quaternion.identity);
                 machineActive = false;
             }
         }
@@ -33,13 +36,16 @@ class Papermaker : MonoBehaviour
         {
             if (inputs.Count > 0)
             {
-                // Turn on the machine automatically
-                // Take the first input
-                currentInput = inputs[0];
-                inputs.RemoveAt(0);
-                Destroy(currentInput.gameObject);
-                machineActive = true;
-                timer = taskTime;
+                if (inputs[0].itemId == "Log")
+                {
+                    // Turn on the machine automatically
+                    // Take the first input
+                    currentInput = inputs[0];
+                    inputs.RemoveAt(0);
+                    Destroy(currentInput.gameObject);
+                    machineActive = true;
+                    timer = taskTime;
+                }
             }
         }
     }
