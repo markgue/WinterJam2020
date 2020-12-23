@@ -24,7 +24,19 @@ class Player : MonoBehaviour {
     [SerializeField]
     private Transform holdingPos;
     [SerializeField]
+    private Transform leftHandPos;
+    [SerializeField]
+    private List<ListWrapper> itemToHandTransforms = new List<ListWrapper>();
+    private Dictionary<string, Transform> itemToHandTransformsHash;
+    [SerializeField]
     private float throwForce = 10.0f;
+
+    [System.Serializable]
+    public class ListWrapper
+    {
+        public string itemId;
+        public Transform localTransformWhileHolding;
+    }
 
     // new grab system
     [SerializeField]
@@ -35,9 +47,19 @@ class Player : MonoBehaviour {
 
     public bool hasAxe = false;
 
+    private void Awake()
+    {
+        itemToHandTransformsHash = new Dictionary<string, Transform>();
+        foreach (ListWrapper listItem in itemToHandTransforms)
+        {
+            itemToHandTransformsHash[listItem.itemId] = listItem.localTransformWhileHolding;
+        }
+    }
+
     // Handles inputs in Update function once per frame
     private void Start() {
         GameManager.instance.playerObject = gameObject;
+        holdingPos.SetParent(leftHandPos);
     }
 
     void Update() 
@@ -102,9 +124,16 @@ class Player : MonoBehaviour {
                     // pick the found item
                     Item target = hitItems[0].gameObject.GetComponent<Item>();
                     if (target != null) {
+                        Transform localTransformForPlacement = itemToHandTransformsHash[target.itemId];
                         if (/*Vector3.Distance(target.transform.position, transform.position) <= grabbingRange*/ true) {
                             target.transform.position = holdingPos.position;
                             target.transform.SetParent(holdingPos);
+                            if (localTransformForPlacement != null)
+                            {
+                                target.transform.localRotation = localTransformForPlacement.localRotation;
+                                target.transform.localPosition = localTransformForPlacement.localPosition;
+                            }
+
                             ItemHolding = target;
                             ItemHolding.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                             target.Take();
