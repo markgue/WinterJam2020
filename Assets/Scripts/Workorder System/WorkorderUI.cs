@@ -14,7 +14,7 @@ public class WorkorderUI : MonoBehaviour
 
         list.text = "";
         foreach (WorkorderManager.Order od in WorkorderManager.instance.ordersToShow) {
-            list.text += od.reqID + " x " + od.amount.ToString() + ", in " + ((int)(Time.time - od.startTime)).ToString() + " seconds\n";
+            list.text += od.reqID + " x " + od.amount.ToString() + ", in " + ((int)(od.duration - Time.time + od.startTime)).ToString() + " seconds\n";
         }
 
         chances.text = "You get " + GameManager.instance.chancesOfFail.ToString() + " more orders to f**k up :)";
