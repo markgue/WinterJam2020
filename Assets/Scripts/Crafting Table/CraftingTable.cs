@@ -135,6 +135,7 @@ public class CraftingTable : MonoBehaviour
                 // Check if inputs form a complete item
                 List<string> currentItemId = new List<string>();
                 Dictionary<string, List<string>> materials = new Dictionary<string, List<string>>();
+                Dictionary<string, int> itemToMaterialCount = new Dictionary<string, int>();
                 int inputCounter = 0;
                 foreach (Item item in inputs)
                 {
@@ -149,6 +150,7 @@ public class CraftingTable : MonoBehaviour
                         foreach(string itemId in currentItemId)
                         {
                             materials[itemId] = new List<string>(itemToCraftingMaterialsHash[itemId]);
+                            itemToMaterialCount[itemId] = itemToCraftingMaterialsHash[itemId].Count;
                             // Debug.Log("item: " + itemId);
                             //foreach(string mat in materials[itemId])
                             //{
@@ -164,7 +166,8 @@ public class CraftingTable : MonoBehaviour
                             // No matching materials or have extra materials
                             continue;
                         }
-                        if (craftingmaterials.Value.Count == 0 && inputCounter == inputs.Count)
+                        if (craftingmaterials.Value.Count == 0 && inputCounter == inputs.Count
+                            && itemToMaterialCount[craftingmaterials.Key] == inputCounter)
                         {
                             // Matching item
                             craftingTableActive = true;
