@@ -30,12 +30,13 @@ public class WorkorderManager : MonoBehaviour
             startTime = stTime;
         }
 
-        public string[] reqID;
-        public int[] amount;
+        public string reqID;
+        public int amount;
         public float duration;
         public float startTime;
     }
-    private List<Order> orderList = new List<Order>();
+    private Dictionary<string, List<Order>> workLists = new Dictionary<string, List<Order>>();
+    public List<Order> ordersToShow = new List<Order>();
 
 
     // system messages ///////////////////////////////////////////////////////////
@@ -49,23 +50,68 @@ public class WorkorderManager : MonoBehaviour
     }
 
     private void Update() {
-        // TODO: check work order completion
+        // interval update
+        if (newOrderTimer <= 0) {
+            newOrderTimer = NextInterval();
+            
+            // create new order
+            Order[] newOrder = NewOrder();
 
+            // update lists
+            foreach (Order temp in newOrder) {
+                // UI will display orders in default order
+                ordersToShow.Add(temp);
+                if (workLists.ContainsKey(temp.reqID)) {
+                    // add to existing list
+                    workLists[temp.reqID].Add(temp);
+                }
+                else {
+                    // create new list for this type
+                    workLists.Add(temp.reqID, new List<Order>(){temp});
+                }
+            }
+        }
+        else {
+            // update timer
+            newOrderTimer -= Time.deltaTime;
+        }
+        
         // check order deadline
-        foreach (Order od in orderList) {
-            if (Time.time - od.startTime > od.duration) {
-                GameManager.instance.OrderOverdue();
+        foreach (KeyValuePair<string, List<Order>> list in workLists) {
+            foreach (Order od in list.Value) {
+                if (Time.time - od.startTime > od.duration) {
+                    GameManager.instance.OrderOverdue();
+                }
             }
         }
     }
 
 
     // work order generation /////////////////////////////////////////////////////
-    private float NextDuration() { 
+    private float NextInterval() { // in case the coming time is designed to be faster and faster
         return orderInterval;
     }
 
-    private void RandomWorkOrder() {
+    private Order[] NewOrder() {
+        return null;
+    }
 
+
+    // work order submission /////////////////////////////////////////////////////
+    public void NewSubmission(ToyProduct newSub) {
+        // TODO: please make sure all no later order dues sooner than earlier orders because I'm only checking the orders in default order
+        
+        // if the toy is not required anywhere, it'll just stay where it is
+        if (workLists.ContainsKey(newSub.productID)) {
+            // remove the item from UI and internal storage
+            ordersToShow.Remove(workLists[newSub.productID][0]);
+            workLists[newSub.productID].Remove(workLists[newSub.productID][0]);
+
+            // tell game manager it's done
+            GameManager.instance.OrderComplete();
+
+            // make the present disappear
+            Destroy(newSub.gameObject);
+        }
     }
 }

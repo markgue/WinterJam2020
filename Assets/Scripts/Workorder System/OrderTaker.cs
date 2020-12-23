@@ -10,6 +10,7 @@ public class OrderTaker: MonoBehaviour
             return;
         }
 
-        // check 
+        // submit the toy to work order system
+        WorkorderManager.instance.NewSubmission(toy);
     }
 }

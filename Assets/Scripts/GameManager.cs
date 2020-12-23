@@ -24,6 +24,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update() {
+        if (chancesOfFail <= 0) {
+            // TODO: game fails
+        }
+    }
+
 
     // other manager messages //////////////////////////////////////////
     public void OrderOverdue() {
