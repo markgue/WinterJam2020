@@ -13,15 +13,15 @@ public class WorkorderManager : MonoBehaviour
     private string[] productsToOrder; // array of product names
 
     // interface with player
-    [SerializeField]
-    private OrderGiver giver;
-    [SerializeField]
-    private OrderTaker taker;
+    //[SerializeField]
+    //private OrderGiver giver;
+    //[SerializeField]
+    //private OrderTaker taker;
     [SerializeField]
     private GameObject orderUI;
 
     // lifecycle management
-    private float newOrderTimer;
+    public float newOrderTimer;
 
     // work order data structure
     public struct Order {
