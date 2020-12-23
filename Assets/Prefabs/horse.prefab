@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4086750252469810056
+--- !u!1 &4306989885685969218
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3746112115925264690}
-  - component: {fileID: 311599990613747351}
-  - component: {fileID: 2573791534211977821}
-  - component: {fileID: 3780319310774161115}
-  - component: {fileID: 5564857389631771028}
-  - component: {fileID: 756702733}
-  - component: {fileID: -5976722238136575622}
+  - component: {fileID: 3498822848371452920}
+  - component: {fileID: 513844950618367069}
+  - component: {fileID: 2361429968412250263}
+  - component: {fileID: 3964550491291923433}
+  - component: {fileID: 3964550491291923437}
+  - component: {fileID: 3964550491291923438}
+  - component: {fileID: 3964550491291923439}
+  - component: {fileID: 3964550491291923432}
   m_Layer: 10
-  m_Name: present
+  m_Name: horse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3746112115925264690
+--- !u!4 &3498822848371452920
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4086750252469810056}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 4306989885685969218}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.59, y: 4.72, z: -15.49}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &311599990613747351
+--- !u!33 &513844950618367069
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4086750252469810056}
-  m_Mesh: {fileID: -5495902117074765545, guid: bbe104af76745c14fb417d23e397f3f4, type: 3}
---- !u!23 &2573791534211977821
+  m_GameObject: {fileID: 4306989885685969218}
+  m_Mesh: {fileID: -5495902117074765545, guid: cfd51f98b25e0f94fa231035ba07322f, type: 3}
+--- !u!23 &2361429968412250263
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4086750252469810056}
+  m_GameObject: {fileID: 4306989885685969218}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: bbe104af76745c14fb417d23e397f3f4, type: 3}
+  - {fileID: -876546973899608171, guid: cfd51f98b25e0f94fa231035ba07322f, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,26 +84,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3780319310774161115
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4086750252469810056}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &5564857389631771028
+--- !u!54 &3964550491291923433
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4086750252469810056}
+  m_GameObject: {fileID: 4306989885685969218}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -112,19 +100,58 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &756702733
+--- !u!65 &3964550491291923437
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4306989885685969218}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.760648, y: 0.74020195, z: 0.5301037}
+  m_Center: {x: -0.041929483, y: 0.5862026, z: 0.5504198}
+--- !u!65 &3964550491291923438
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4306989885685969218}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.760648, y: 0.74020195, z: 0.5616932}
+  m_Center: {x: -0.041929483, y: 0.5862026, z: -0.56621456}
+--- !u!65 &3964550491291923439
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4306989885685969218}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4116526, y: 1.8258142, z: 0.57699203}
+  m_Center: {x: -0.21642733, y: 1.7907643, z: 0.046154022}
+--- !u!114 &3964550491291923432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4086750252469810056}
+  m_GameObject: {fileID: 4306989885685969218}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 439da8ce83b12864194adeb25647907d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: Present
+  itemId: Wooden Horse
   health: 1
   playerLayer:
     serializedVersion: 2
@@ -132,16 +159,3 @@ MonoBehaviour:
   hoverToolTip: {fileID: 3450448896576758269, guid: a898eca1cdcec05469a0705ba44b4106,
     type: 3}
   hoverHeight: 1
---- !u!114 &-5976722238136575622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4086750252469810056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe143d390d044914993a09c22f97d929, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  productID: 
