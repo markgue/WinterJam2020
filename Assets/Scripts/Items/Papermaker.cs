@@ -60,6 +60,7 @@ class Papermaker : MonoBehaviour
                         Destroy(currentInput.gameObject);
                         machineActive = true;
                         timer = taskTime;
+                        break;
                     }
                 }
             }
