@@ -599,7 +599,7 @@ PrefabInstance:
         type: 3}
       propertyPath: itemToCraftingMaterials.Array.data[2].icon
       value: 
-      objectReference: {fileID: 21300000, guid: 5e4d4191ea46bb24d8f86d4050de57d0,
+      objectReference: {fileID: 21300000, guid: 91668f924e86908438e216752d45a85d,
         type: 3}
     - target: {fileID: 4247928902793543326, guid: 63250f342b98acc459ec8957305875a0,
         type: 3}
@@ -1184,6 +1184,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObject: {fileID: 0}
+  startMenu: 
+  gameScene: 
+  failScene: 
+  creditScene: 
+  difficultySettings: 
+  maxChanceOfFail: 0
   chancesOfFail: 0
 --- !u!4 &621252864
 Transform:
