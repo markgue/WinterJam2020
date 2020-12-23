@@ -11,4 +11,8 @@ public class MainMenuGMAgent : MonoBehaviour
     public void SetVolume(float newVolume) {
         GameManager.instance.SetVolume(newVolume);
     }
+
+    public void SetName(string newName) {
+        GameManager.instance.SetName(newName);
+    }
 }

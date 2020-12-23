@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     public static GameManager instance;
 
     public GameObject playerObject;
@@ -19,13 +18,15 @@ public class GameManager : MonoBehaviour
     public float volume; // 0 - 1
     [SerializeField]
     private int[] difficultySettings;
+    [SerializeField]
+    public string playerName = "Nameless Elf";
 
     // workorder system: progress related please reset
     public int maxChanceOfFail;
     public int chancesOfFail;
     public int completionCount = 0;
     public int failCount = 0;
-    
+
     // system messages /////////////////////////////////////////////////
     void Awake() {
         if (instance != null && instance != this) {
@@ -64,6 +65,10 @@ public class GameManager : MonoBehaviour
 
     public void SetVolume(float newVolume) {
         volume = newVolume;
+    }
+
+    public void SetName(string newName) {
+        playerName = newName;
     }
 
 
