@@ -736,6 +736,12 @@ Transform:
   m_Father: {fileID: 948012662}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &475304102 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 4247928902793543327, guid: 63250f342b98acc459ec8957305875a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4247928903742756207}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &475520617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2602,7 +2608,7 @@ PrefabInstance:
     - target: {fileID: 3102682754249054270, guid: de73220e5ee85a44f8366b6bce045458,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.25035
+      value: -3.92
       objectReference: {fileID: 0}
     - target: {fileID: 3102682754249054270, guid: de73220e5ee85a44f8366b6bce045458,
         type: 3}
@@ -2666,6 +2672,22 @@ PrefabInstance:
     - target: {fileID: 4247928902370894190, guid: 63250f342b98acc459ec8957305875a0,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247928902793543326, guid: 63250f342b98acc459ec8957305875a0,
+        type: 3}
+      propertyPath: stickyTrigger
+      value: 
+      objectReference: {fileID: 475304102}
+    - target: {fileID: 4247928902793543326, guid: 63250f342b98acc459ec8957305875a0,
+        type: 3}
+      propertyPath: itemToCraftingMaterials.Array.data[1].itemPrefab
+      value: 
+      objectReference: {fileID: 2037132453895705203, guid: a0a4ac2ce335b27408cc177fc0cc7fcd,
+        type: 3}
+    - target: {fileID: 4247928903190128568, guid: 63250f342b98acc459ec8957305875a0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4247928904313097187, guid: 63250f342b98acc459ec8957305875a0,

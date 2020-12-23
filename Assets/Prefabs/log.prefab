@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3730273862761630037}
   - component: {fileID: -6450803143069322562}
   - component: {fileID: 3262978925029952203}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: log
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
-  hoverToolTip: {fileID: 0}
+  hoverToolTip: {fileID: 3450448896576758269, guid: a898eca1cdcec05469a0705ba44b4106,
+    type: 3}
   hoverHeight: 0
 --- !u!54 &3262978925029952203
 Rigidbody:
