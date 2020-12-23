@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
     // workorder system
     public int maxChanceOfFail;
     public int chancesOfFail;
-    private int completionCount = 0;
-    private int failCount = 0;
+    public int completionCount = 0;
+    public int failCount = 0;
     
     // system messages /////////////////////////////////////////////////
     void Awake() {

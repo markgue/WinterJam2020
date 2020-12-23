@@ -5,7 +5,8 @@ using UnityEngine;
 public class IntroText : MonoBehaviour
 {
     public GameObject nextText;
-    
+    public string sceneAfterTheSequence;
+
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (nextText) {
