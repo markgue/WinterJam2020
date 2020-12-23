@@ -83,6 +83,8 @@ public class WorkorderManager : MonoBehaviour
             foreach (Order od in list.Value) {
                 if (Time.time - od.startTime > od.duration) {
                     GameManager.instance.OrderOverdue();
+                    list.Value.Remove(od);
+                    ordersToShow.Remove(od);
                 }
             }
         }
