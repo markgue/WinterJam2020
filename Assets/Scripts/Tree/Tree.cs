@@ -35,6 +35,8 @@ public class Tree : MonoBehaviour
     private GameObject[] parts;
     [SerializeField]
     private int[] chkPoints;
+    [SerializeField]
+    private Transform dropPoint;
 
 
     // system messages //////////////////////////////////////////////
@@ -84,8 +86,9 @@ public class Tree : MonoBehaviour
                 else {
                     // animate the progress change
                     for (int i = 0; i < chkPoints.Length; i++) {
-                        if (progress <= chkPoints[i]) {
+                        if (progress <= chkPoints[i] && parts[i].activeSelf == true) {
                             parts[i].SetActive(false);
+                            TreeManager.instance.DropLog(dropPoint);
                         }
                     }
 

@@ -12,10 +12,10 @@ public class TreeManager : MonoBehaviour
 
     public float treeSpawnTime = 10;
 
+    // spawning tree and log
+    public GameObject logPrefab;
     [SerializeField]
-    GameObject treeSpawner; // it's a prefab!
-    [SerializeField]
-    GameObject logPrefab;
+    GameObject treeSpawner;
 
     public bool playerHasAxe = false;
     
@@ -37,7 +37,13 @@ public class TreeManager : MonoBehaviour
         Debug.Log("treeGotChopped() called by");
         Debug.Log(poorTree.transform.position);
         Instantiate(treeSpawner, poorTree.transform.position + new Vector3(0.2f, 0, 0.2f), Quaternion.identity);
-        Instantiate(logPrefab, poorTree.transform.position, Quaternion.identity);
+        DropLog(poorTree.transform);
         Destroy(poorTree);
+    }
+
+
+    // spawning ////////////////////////////////////////////////////////
+    public void DropLog(Transform dropLocation) {
+        Instantiate(logPrefab, dropLocation.position, Quaternion.identity);
     }
 }

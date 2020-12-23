@@ -330,6 +330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2878222229786094268}
   - component: {fileID: 1681190224768447801}
+  - component: {fileID: 3466627207661052609}
   m_Layer: 0
   m_Name: Christmas Tree
   m_TagString: Untagged
@@ -353,6 +354,7 @@ Transform:
   - {fileID: 2340682835540954254}
   - {fileID: 2340682836061038327}
   - {fileID: 1681190224690070221}
+  - {fileID: 5454251266023281614}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -386,6 +388,51 @@ MonoBehaviour:
   - {fileID: 3112011599061554740}
   - {fileID: 3112011598566462350}
   chkPoints: 46000000320000001e000000
+  dropPoint: {fileID: 5454251266023281614}
+--- !u!136 &3466627207661052609
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2878222229786094269}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.5
+  m_Height: 9.303081
+  m_Direction: 1
+  m_Center: {x: 0, y: 4.6132054, z: 0}
+--- !u!1 &3310268444680946139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5454251266023281614}
+  m_Layer: 0
+  m_Name: drop point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5454251266023281614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3310268444680946139}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.6, y: 4.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2878222229786094268}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6240976809308286188
 GameObject:
   m_ObjectHideFlags: 0
