@@ -98,7 +98,7 @@ public class WorkorderManager : MonoBehaviour
 
     private Order[] NewOrder() {
         // the defaults here are for single item orders
-        Order temp = new Order(productsToOrder[Random.Range(0, productsToOrder.Length - 1)], 1, orderDuration, Time.time);
+        Order temp = new Order(productsToOrder[Random.Range(0, productsToOrder.Length)], 1, orderDuration, Time.time);
         return new Order[1] { temp };
     }
 
