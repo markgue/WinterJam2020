@@ -59,6 +59,14 @@ class Player : MonoBehaviour {
             gameObject.GetComponent<Animator>().SetBool("isRunning", false);
         }
 
+        //// checking holding animation
+        //if (ItemHolding != null) {
+        //    gameObject.GetComponent<Animator>().SetBool("isHoldingItem", true);
+        //}
+        //else {
+        //    gameObject.GetComponent<Animator>().SetBool("isHoldingItem", false);
+        //}
+
         controller.Move(move);
 
         // ground check and pushing player onto ground
@@ -94,15 +102,15 @@ class Player : MonoBehaviour {
                     // pick the found item
                     Item target = hitItems[0].gameObject.GetComponent<Item>();
                     if (target != null) {
-                        if (Vector3.Distance(target.transform.position, transform.position) <= grabbingRange) {
+                        if (/*Vector3.Distance(target.transform.position, transform.position) <= grabbingRange*/ true) {
                             target.transform.position = holdingPos.position;
                             target.transform.SetParent(holdingPos);
                             ItemHolding = target;
                             ItemHolding.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                             target.Take();
                             Debug.Log("Item picked up");
+                            gameObject.GetComponent<Animator>().SetTrigger("Pickup");
                         }
-                        gameObject.GetComponent<Animator>().SetTrigger("Pickup");
                     }
                 }
             }
@@ -140,14 +148,6 @@ class Player : MonoBehaviour {
             //        Debug.Log("item thrown");
             //    }
             //}
-        }
-
-        // checking holding animation
-        if (ItemHolding != null) {
-            gameObject.GetComponent<Animator>().SetBool("isHolding", true);
-        }
-        else {
-            gameObject.GetComponent<Animator>().SetBool("isHolding", false);
         }
     }
 }
