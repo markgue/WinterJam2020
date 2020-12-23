@@ -7,7 +7,7 @@ using TMPro;
 public class WorkorderUI : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI timer, list;
+    TextMeshProUGUI timer, list, chances;
 
     private void Update() {
         timer.text = "NEXT ORDER: " + ((int)WorkorderManager.instance.newOrderTimer).ToString() + " SECONDS";
@@ -16,5 +16,7 @@ public class WorkorderUI : MonoBehaviour
         foreach (WorkorderManager.Order od in WorkorderManager.instance.ordersToShow) {
             list.text += od.reqID + " x " + od.amount.ToString() + ", in " + ((int)od.duration).ToString() + " seconds\n";
         }
+
+        chances.text = "You get " + GameManager.instance.chancesOfFail.ToString() + " more orders to f**k up :)";
     }
 }

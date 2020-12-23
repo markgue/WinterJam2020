@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerObject;
 
     // workorder system
-    [SerializeField]
-    private int chancesOfFail;
+    public int chancesOfFail;
     private int completionCount = 0;
     private int failCount = 0;
     
