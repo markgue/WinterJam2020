@@ -117,6 +117,7 @@ public class CraftingTable : MonoBehaviour
                         Rigidbody rb = item.GetComponent<Rigidbody>();
                         rb.isKinematic = false;
                         rb.velocity = disperseDirection * disperseStrength;
+                        item.enabled = true;
                         inputs.Remove(item);
                     }
                     StartCoroutine(stickyTableCooldown(2f));
