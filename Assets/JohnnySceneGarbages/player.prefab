@@ -60,6 +60,36 @@ Transform:
   m_Father: {fileID: 1748966833}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -78.1, y: 40, z: 40}
+--- !u!1 &1439543863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1439543864}
+  m_Layer: 0
+  m_Name: Present
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1439543864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439543863}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -1, z: 0.55}
+  m_LocalScale: {x: 1, y: 1.0000013, z: 1.0000014}
+  m_Children: []
+  m_Father: {fileID: 1748966833}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &1748966832
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,6 +119,7 @@ Transform:
   m_Children:
   - {fileID: 675843836}
   - {fileID: 165782435}
+  - {fileID: 1439543864}
   m_Father: {fileID: 344551463127103017}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -277,7 +308,7 @@ MonoBehaviour:
   - itemId: Log
     localTransformWhileHolding: {fileID: 165782435}
   - itemId: Present
-    localTransformWhileHolding: {fileID: 165782435}
+    localTransformWhileHolding: {fileID: 1439543864}
   throwForce: 700
   grabRadius: 1
   grabPoint: {fileID: 8901866807851858926}
