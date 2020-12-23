@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: {fileID: 1965211584639662179}
   list: {fileID: 2047743267016884837}
-  chances: {fileID: 0}
+  chances: {fileID: 5332606151462033936}
 --- !u!1 &3707131576764114628
 GameObject:
   m_ObjectHideFlags: 0
