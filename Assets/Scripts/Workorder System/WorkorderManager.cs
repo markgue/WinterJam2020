@@ -8,15 +8,11 @@ public class WorkorderManager : MonoBehaviour
 
     // parameters 
     [SerializeField]
-    private float orderInterval; // interval between each arrival of workorder
+    private float orderInterval, orderDuration; // interval between each arrival of workorder
     [SerializeField]
     private string[] productsToOrder; // array of product names
 
-    // interface with player
-    //[SerializeField]
-    //private OrderGiver giver;
-    //[SerializeField]
-    //private OrderTaker taker;
+    // interfaces
     [SerializeField]
     private GameObject orderUI;
 
@@ -49,6 +45,10 @@ public class WorkorderManager : MonoBehaviour
         else if (instance != this) {
             Destroy(gameObject);
         }
+    }
+
+    private void Start() {
+        newOrderTimer = orderInterval;
     }
 
     private void Update() {
@@ -96,7 +96,7 @@ public class WorkorderManager : MonoBehaviour
 
     private Order[] NewOrder() {
         // the defaults here are for single item orders
-        Order temp = new Order(productsToOrder[Random.Range(0, productsToOrder.Length - 1)], 1, 0, Time.time);
+        Order temp = new Order(productsToOrder[Random.Range(0, productsToOrder.Length - 1)], 1, orderDuration, Time.time);
         return new Order[1] { temp };
     }
 
