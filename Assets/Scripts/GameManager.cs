@@ -15,10 +15,13 @@ public class GameManager : MonoBehaviour
     private string currentScene;
 
     // system settings 
-    public float volume;
+    public float volume { get; set; } // 0 - 1
+    [SerializeField]
+    private int[] difficultySettings;
 
     // workorder system
-    public int maxChanceOfFail, chancesOfFail;
+    public int maxChanceOfFail;
+    public int chancesOfFail;
     private int completionCount = 0;
     private int failCount = 0;
     
@@ -50,6 +53,12 @@ public class GameManager : MonoBehaviour
 
     public void OrderComplete() {
         completionCount++;
+    }
+
+
+    // system settings ///////////////////////////////////////////////
+    public void SetMaxFails(int optIndex) {
+        maxChanceOfFail = difficultySettings[optIndex];
     }
 
 
