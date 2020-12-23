@@ -46,8 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderInterval: 30
+  orderDuration: 0
   productsToOrder:
   - Horse
+  - Train
   orderUI: {fileID: 6472318219623855431}
   newOrderTimer: 0
 --- !u!1001 &3822875734981434736
