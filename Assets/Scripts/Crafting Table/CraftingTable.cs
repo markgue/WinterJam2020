@@ -132,7 +132,6 @@ public class CraftingTable : MonoBehaviour
         {
             if (inputs.Count > 0)
             {
-                Debug.Log("Num INputs: " + inputs.Count);
                 // Check if inputs form a complete item
                 List<string> currentItemId = new List<string>();
                 Dictionary<string, List<string>> materials = new Dictionary<string, List<string>>();

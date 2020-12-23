@@ -30,6 +30,7 @@ class Player : MonoBehaviour {
     private Dictionary<string, Transform> itemToHandTransformsHash;
     [SerializeField]
     private float throwForce = 10.0f;
+    private bool hasRecentlyThrown = false;
 
     [System.Serializable]
     public class ListWrapper
@@ -131,6 +132,13 @@ class Player : MonoBehaviour {
             it.gameObject.GetComponent<Item>().Hover();
         }
 
+        AnimatorStateInfo info = GetComponent<Animator>().GetCurrentAnimatorStateInfo(GetComponent<Animator>().GetLayerIndex("Interaction"));
+        if (info.IsName("Holding") && ItemHolding == null && !hasRecentlyThrown)
+        {
+            // Happens when the present is removed when walking into the chute
+            GetComponent<Animator>().SetTrigger("Throw");
+            hasRecentlyThrown = true;
+        }
 
         // pickup / throw
         if (Input.GetKeyDown(PickAndThrowKey) || Input.GetKeyDown(PickAndThrowJoystick))
@@ -145,6 +153,7 @@ class Player : MonoBehaviour {
                 ItemHolding = null;
                 Debug.Log("item thrown");
                 gameObject.GetComponent<Animator>().SetTrigger("Throw");
+                hasRecentlyThrown = true;
             }
             else {
                 if (hitItems.Length > 0) {
@@ -166,6 +175,7 @@ class Player : MonoBehaviour {
                             target.Take();
                             Debug.Log("Item picked up");
                             gameObject.GetComponent<Animator>().SetTrigger("Pickup");
+                            hasRecentlyThrown = false;
                         }
                     }
                 }
