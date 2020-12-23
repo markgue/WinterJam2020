@@ -57,13 +57,52 @@ public class Tree : MonoBehaviour
 
         // if player has axe and player is close enough
         if (TreeManager.instance.playerHasAxe && distanceFromPlayer <= chopRadius) {
-            UpdateTimer((timer + Time.deltaTime * slideSpeed) % maxTime);
+            //UpdateTimer((timer + Time.deltaTime * slideSpeed) % maxTime);
             qteUI.SetActive(true);
 
             // player chops
-            if (Input.GetKeyDown(chopKey) || Input.GetKeyDown(chopJoystick)) {
+            if (Input.GetKey(chopKey) || Input.GetKey(chopJoystick)) {
+                UpdateTimer((timer + Time.deltaTime * slideSpeed) % maxTime);
+
+                //int rawDamage = 0;
+
+                //// check time interval
+                //if (timer > critIntervalL && timer < critIntervalH) {
+                //    rawDamage = highDamage;
+                //}
+                //else if (timer > normIntervalL && timer < normIntervalH) {
+                //    rawDamage = lowDamage;
+                //}
+                //else {
+                //    rawDamage = 0;
+                //}
+
+                //progress -= rawDamage;
+
+                //// update progress
+                //if (progress <= 0) {
+                //    // notify tree manager the tree is down
+                //    TreeManager.instance.TreeGotChopped(gameObject);
+                //    return;
+                //}
+                //else {
+                //    // animate the progress change
+                //    for (int i = 0; i < chkPoints.Length; i++) {
+                //        if (progress <= chkPoints[i] && parts[i].activeSelf == true) {
+                //            parts[i].SetActive(false);
+                //            TreeManager.instance.DropLog(dropPoint);
+                //        }
+                //    }
+
+                //    // freeze slide bar
+                //    StartCoroutine(ChopCoolDown(chopCD));
+                //}
+
+                //GameManager.instance.playerObject.GetComponent<Animator>().SetTrigger("Chop");
+            }
+            else if (Input.GetKeyUp(chopKey) || Input.GetKeyUp(chopJoystick)) {
                 int rawDamage = 0;
-                
+
                 // check time interval
                 if (timer > critIntervalL && timer < critIntervalH) {
                     rawDamage = highDamage;
