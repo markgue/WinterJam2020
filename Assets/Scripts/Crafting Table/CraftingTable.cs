@@ -37,7 +37,7 @@ public class CraftingTable : MonoBehaviour
     private Dictionary<string, List<string>> itemToCraftingMaterialsHash;
     private Dictionary<string, Sprite> itemToCraftingIconHash;
     private Dictionary<string, Transform> itemToPrefab;
-    private Dictionary<string, string> craftingMaterialToItemHash;
+    private Dictionary<string, List<string>> craftingMaterialToItemHash;
 
     private bool craftingTableActive;
     private string itemToCraftOnceActive;
@@ -50,7 +50,7 @@ public class CraftingTable : MonoBehaviour
     {
         // Create hashes for quick access of items and crafting materials
         itemToCraftingMaterialsHash = new Dictionary<string, List<string>>();
-        craftingMaterialToItemHash = new Dictionary<string, string>();
+        craftingMaterialToItemHash = new Dictionary<string, List<string>>();
         itemToCraftingIconHash = new Dictionary<string, Sprite>();
         itemToPrefab = new Dictionary<string, Transform>();
         for (int i = 0; i < itemToCraftingMaterials.Count; i++)
@@ -63,7 +63,10 @@ public class CraftingTable : MonoBehaviour
             for (int j = 0; j < craftingMats.Count; j++)
             {
                 itemToCraftingMaterialsHash[item.itemId].Add(craftingMats[j]);
-                craftingMaterialToItemHash[craftingMats[j]] = item.itemId;
+                if (!craftingMaterialToItemHash.ContainsKey(craftingMats[j])) {
+                    craftingMaterialToItemHash[craftingMats[j]] = new List<string>();
+                }
+                craftingMaterialToItemHash[craftingMats[j]].Add(item.itemId);
             }
         }
         craftingTableActive = false;
@@ -129,33 +132,47 @@ public class CraftingTable : MonoBehaviour
         {
             if (inputs.Count > 0)
             {
+                Debug.Log("Num INputs: " + inputs.Count);
                 // Check if inputs form a complete item
-                string currentItemId = "";
-                List<string> materials = new List<string>();
+                List<string> currentItemId = new List<string>();
+                Dictionary<string, List<string>> materials = new Dictionary<string, List<string>>();
                 int inputCounter = 0;
                 foreach (Item item in inputs)
                 {
                     inputCounter += 1;
-                    if (currentItemId.Length == 0)
+                    if (currentItemId.Count == 0)
                     {
                         if (!craftingMaterialToItemHash.TryGetValue(item.itemId, out currentItemId))
                         {
+                            // Debug.Log("NOT FOUND");
                             break;
                         }
-                        materials = new List<string>(itemToCraftingMaterialsHash[currentItemId]);
+                        foreach(string itemId in currentItemId)
+                        {
+                            materials[itemId] = new List<string>(itemToCraftingMaterialsHash[itemId]);
+                            // Debug.Log("item: " + itemId);
+                            //foreach(string mat in materials[itemId])
+                            //{
+                            //    Debug.Log("\tmat: " + mat);
+                            //}
+                        }
+                        // Debug.Log("materials: " + materials.Count);
                     }
-                    if (!materials.Remove(item.itemId))
+                    foreach(KeyValuePair<string, List<string>> craftingmaterials in materials)
                     {
-                        // No matching materials or have extra materials
-                        break;
-                    }
-                    if (materials.Count == 0 && inputCounter == inputs.Count)
-                    {
-                        // Matching item
-                        craftingTableActive = true;
-                        itemToCraftOnceActive = currentItemId;
-                        activeCraftingInputs = new List<Item>(inputs);
-                        // stickyTrigger.enabled = false;
+                        if (!craftingmaterials.Value.Remove(item.itemId))
+                        {
+                            // No matching materials or have extra materials
+                            continue;
+                        }
+                        if (craftingmaterials.Value.Count == 0 && inputCounter == inputs.Count)
+                        {
+                            // Matching item
+                            craftingTableActive = true;
+                            itemToCraftOnceActive = craftingmaterials.Key;
+                            activeCraftingInputs = new List<Item>(inputs);
+                            // stickyTrigger.enabled = false;
+                        }
                     }
                 }
             }

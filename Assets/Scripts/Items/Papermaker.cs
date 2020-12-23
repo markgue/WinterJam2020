@@ -8,6 +8,13 @@ class Papermaker : MonoBehaviour
     [SerializeField]
     private Transform OutputPoint;
 
+    [System.Serializable]
+    public class ListWrapper
+    {
+        public string inputItemId;
+        public List<GameObject> outputs;
+    }
+
     private List<Item> inputs = new List<Item>();
     Item currentInput = null;
     [SerializeField]
@@ -15,9 +22,12 @@ class Papermaker : MonoBehaviour
     [SerializeField]
     private GameObject product2;
     [SerializeField]
+    private List<ListWrapper> inputsToProducts;
+    [SerializeField]
     private float taskTime;
     private float timer;
     private bool machineActive;
+    private List<GameObject> currentOutputs;
 
     private void Update()
     {
@@ -26,9 +36,11 @@ class Papermaker : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer < 0)
             {
-                // TODO: Check if the input is indeed wood
-                GameObject.Instantiate(product1, OutputPoint.position, Quaternion.identity);
-                GameObject.Instantiate(product2, OutputPoint.position + OutputPoint.forward, Quaternion.identity);
+                int count = 0;
+                foreach(GameObject obj in currentOutputs)
+                {
+                    GameObject.Instantiate(obj, OutputPoint.position + OutputPoint.forward * count, Quaternion.identity);
+                }
                 machineActive = false;
             }
         }
@@ -36,15 +48,19 @@ class Papermaker : MonoBehaviour
         {
             if (inputs.Count > 0)
             {
-                if (inputs[0].itemId == "Log")
+                foreach(ListWrapper item in inputsToProducts)
                 {
-                    // Turn on the machine automatically
-                    // Take the first input
-                    currentInput = inputs[0];
-                    inputs.RemoveAt(0);
-                    Destroy(currentInput.gameObject);
-                    machineActive = true;
-                    timer = taskTime;
+                    if (item.inputItemId == inputs[0].itemId)
+                    {
+                        currentOutputs = new List<GameObject>(item.outputs);
+                        // Turn on the machine automatically
+                        // Take the first input
+                        currentInput = inputs[0];
+                        inputs.RemoveAt(0);
+                        Destroy(currentInput.gameObject);
+                        machineActive = true;
+                        timer = taskTime;
+                    }
                 }
             }
         }
