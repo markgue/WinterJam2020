@@ -14,7 +14,7 @@ public class IntroText : MonoBehaviour
                 gameObject.SetActive(false);
             }
             else {
-                GameManager.instance.ToGameScene();
+                GameManager.instance.ToSpecificScene(sceneAfterTheSequence);
             }
         }
     }

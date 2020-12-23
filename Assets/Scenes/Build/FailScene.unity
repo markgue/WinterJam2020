@@ -874,7 +874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextText: {fileID: 0}
-  sceneAfterTheSequence: 
+  sceneAfterTheSequence: CreditScene
 --- !u!1 &1797933333
 GameObject:
   m_ObjectHideFlags: 0
