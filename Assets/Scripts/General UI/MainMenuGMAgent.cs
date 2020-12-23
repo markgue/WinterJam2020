@@ -15,4 +15,8 @@ public class MainMenuGMAgent : MonoBehaviour
     public void SetName(string newName) {
         GameManager.instance.SetName(newName);
     }
+
+    public string GetPlayerName() {
+        return GameManager.instance.playerName;
+    }
 }
