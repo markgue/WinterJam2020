@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int[] difficultySettings;
 
-    // workorder system
+    // workorder system: progress related please reset
     public int maxChanceOfFail;
     public int chancesOfFail;
     public int completionCount = 0;
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void Update() {
         if (chancesOfFail <= 0 && currentScene == gameScene) {
-            // TODO: game fails
+            // game fails
             ToFailScene();
         }
     }
@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour
     public void ToGameScene() {
         chancesOfFail = maxChanceOfFail;
         currentScene = gameScene;
+        completionCount = 0;
+        failCount = 0;
         SceneManager.LoadScene(currentScene);
     }
 
@@ -82,5 +84,12 @@ public class GameManager : MonoBehaviour
     public void ToCreditScene() {
         currentScene = creditScene;
         SceneManager.LoadScene(currentScene);
+    }
+
+    public void ToSpecificScene(string sceneName) {
+        if (sceneName == startMenu || sceneName == gameScene || sceneName == failScene || sceneName == creditScene) {
+            currentScene = sceneName;
+            SceneManager.LoadScene(currentScene);
+        }
     }
 }
