@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,8 +9,16 @@ public class GameManager : MonoBehaviour
 
     public GameObject playerObject;
 
+    // scene management
+    [SerializeField]
+    private string startMenu, gameScene, failScene, creditScene;
+    private string currentScene;
+
+    // system settings 
+    public float volume;
+
     // workorder system
-    public int chancesOfFail;
+    public int maxChanceOfFail, chancesOfFail;
     private int completionCount = 0;
     private int failCount = 0;
     
@@ -21,16 +30,19 @@ public class GameManager : MonoBehaviour
         else {
             instance = this;
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update() {
-        if (chancesOfFail <= 0) {
+        if (chancesOfFail <= 0 && currentScene == gameScene) {
             // TODO: game fails
+            ToFailScene();
         }
     }
 
 
-    // other manager messages //////////////////////////////////////////
+    // work order system ////////////////////////////////////////////
     public void OrderOverdue() {
         chancesOfFail--;
         failCount++;
@@ -38,5 +50,28 @@ public class GameManager : MonoBehaviour
 
     public void OrderComplete() {
         completionCount++;
+    }
+
+
+    // scene loading /////////////////////////////////////////////////
+    public void ToMenuScene() {
+        currentScene = startMenu;
+        SceneManager.LoadScene(currentScene);
+    }
+
+    public void ToGameScene() {
+        chancesOfFail = maxChanceOfFail;
+        currentScene = gameScene;
+        SceneManager.LoadScene(currentScene);
+    }
+
+    public void ToFailScene() {
+        currentScene = failScene;
+        SceneManager.LoadScene(currentScene);
+    }
+
+    public void ToCreditScene() {
+        currentScene = creditScene;
+        SceneManager.LoadScene(currentScene);
     }
 }
