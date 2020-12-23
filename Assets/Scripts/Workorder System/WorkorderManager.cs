@@ -9,6 +9,8 @@ public class WorkorderManager : MonoBehaviour
     // parameters 
     [SerializeField]
     private float orderInterval; // interval between each arrival of workorder
+    [SerializeField]
+    private string[] productsToOrder; // array of product names
 
     // interface with player
     [SerializeField]
@@ -23,7 +25,7 @@ public class WorkorderManager : MonoBehaviour
 
     // work order data structure
     public struct Order {
-        public Order(string[] ids, int[] counts, float dur, float stTime = 0) {
+        public Order(string ids, int counts, float dur, float stTime = 0) {
             reqID = ids;
             amount = counts;
             duration = dur;
@@ -93,7 +95,9 @@ public class WorkorderManager : MonoBehaviour
     }
 
     private Order[] NewOrder() {
-        return null;
+        // the defaults here are for single item orders
+        Order temp = new Order(productsToOrder[Random.Range(0, productsToOrder.Length - 1)], 1, 0, Time.time);
+        return new Order[1] { temp };
     }
 
 
