@@ -102,6 +102,7 @@ class Player : MonoBehaviour {
         // tell items to show hover menu (not menu really but seems hover menu sounds more smooth :)
         Collider[] hitItems = Physics.OverlapSphere(grabPoint.position, grabRadius, itemMask);
         foreach (Collider it in hitItems) {
+            Debug.Log("Collision");
             it.gameObject.GetComponent<Item>().Hover();
         }
 

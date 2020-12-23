@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2573791534211977821}
   - component: {fileID: 3780319310774161115}
   - component: {fileID: 5564857389631771028}
-  m_Layer: 0
+  - component: {fileID: 756702733}
+  m_Layer: 10
   m_Name: present
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,3 +111,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &756702733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4086750252469810056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 439da8ce83b12864194adeb25647907d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: Present
+  health: 1
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  hoverToolTip: {fileID: 3450448896576758269, guid: a898eca1cdcec05469a0705ba44b4106,
+    type: 3}
+  hoverHeight: 1

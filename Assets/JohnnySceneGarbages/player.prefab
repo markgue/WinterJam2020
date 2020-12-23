@@ -276,6 +276,8 @@ MonoBehaviour:
     localTransformWhileHolding: {fileID: 675843836}
   - itemId: Log
     localTransformWhileHolding: {fileID: 165782435}
+  - itemId: Present
+    localTransformWhileHolding: {fileID: 165782435}
   throwForce: 700
   grabRadius: 1
   grabPoint: {fileID: 8901866807851858926}
