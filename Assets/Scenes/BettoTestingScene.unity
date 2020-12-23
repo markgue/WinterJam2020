@@ -566,7 +566,13 @@ MonoBehaviour:
   throwForce: 1000
   grabRadius: 0
   grabPoint: {fileID: 0}
+  tableGrabOffsetMagnitude: {x: 0, y: 0}
+  tableGrabRadiusOffset: 0
+  tableGrabAngleDegreesThreshold: 0
   itemMask:
+    serializedVersion: 2
+    m_Bits: 0
+  detectionMask:
     serializedVersion: 2
     m_Bits: 0
   hasAxe: 0
@@ -1268,7 +1274,7 @@ PrefabInstance:
     - target: {fileID: 2037132453895705203, guid: a0a4ac2ce335b27408cc177fc0cc7fcd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.05
+      value: 5.09
       objectReference: {fileID: 0}
     - target: {fileID: 2037132453895705203, guid: a0a4ac2ce335b27408cc177fc0cc7fcd,
         type: 3}
@@ -2005,7 +2011,13 @@ MonoBehaviour:
   throwForce: 1000
   grabRadius: 0
   grabPoint: {fileID: 1114166267}
+  tableGrabOffsetMagnitude: {x: 0, y: 0}
+  tableGrabRadiusOffset: 0
+  tableGrabAngleDegreesThreshold: 0
   itemMask:
+    serializedVersion: 2
+    m_Bits: 0
+  detectionMask:
     serializedVersion: 2
     m_Bits: 0
   hasAxe: 0

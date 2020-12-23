@@ -43,7 +43,14 @@ class Player : MonoBehaviour {
     private float grabRadius;
     [SerializeField]
     private Transform grabPoint;
+    [SerializeField]
+    private Vector2 tableGrabOffsetMagnitude;
+    [SerializeField]
+    private float tableGrabRadiusOffset;
+    [SerializeField]
+    private float tableGrabAngleDegreesThreshold;
     public LayerMask itemMask;
+    public LayerMask detectionMask;
 
     public bool hasAxe = false;
 
@@ -99,19 +106,38 @@ class Player : MonoBehaviour {
         //}
         controller.Move(gVelocity * Time.deltaTime);
 
+        // If we are near the table, we need to offset our collision for detecting items to account for difference in elevation and length
+        CapsuleCollider collider = GetComponent<CapsuleCollider>();
+        Collider[] nearTable = Physics.OverlapSphere(transform.position, collider.radius, detectionMask); // Good enough for detection purposes
+        Vector3 grabOffset = Vector3.zero;
+        float grabRadiusOffsetF = 0f;
+        if (nearTable.Length > 0)
+        {
+            Collider tableCol = nearTable[0];
+            Vector3 torwardsTableDirection = (tableCol.transform.position - transform.position).normalized;
+            // Near table, use offseted collision method if we are facing the table
+            if (Vector3.Dot(torwardsTableDirection, transform.forward.normalized) >= Mathf.Cos(Mathf.PI * tableGrabAngleDegreesThreshold / 180))
+            {
+                grabOffset = tableGrabOffsetMagnitude.x * transform.forward.normalized + tableGrabOffsetMagnitude.y * transform.up.normalized;
+                grabRadiusOffsetF = tableGrabRadiusOffset;
+            }
+        }
+
         // tell items to show hover menu (not menu really but seems hover menu sounds more smooth :)
-        Collider[] hitItems = Physics.OverlapSphere(grabPoint.position, grabRadius, itemMask);
-        foreach (Collider it in hitItems) {
-            Debug.Log("Collision");
+        Collider[] hitItems = Physics.OverlapSphere(grabPoint.position + grabOffset, grabRadius + grabRadiusOffsetF, itemMask);
+        foreach (Collider it in hitItems)
+        {
+            // Debug.Log("Collision");
             it.gameObject.GetComponent<Item>().Hover();
         }
+
 
         // pickup / throw
         if (Input.GetKeyDown(PickAndThrowKey) || Input.GetKeyDown(PickAndThrowJoystick))
         {
             if (ItemHolding != null) {
                 // throw current holding item towards the point
-                Vector3 direction = transform.forward;
+                Vector3 direction = transform.forward + Vector3.up * 0.15f;
                 ItemHolding.transform.SetParent(null);
                 ItemHolding.gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 ItemHolding.gameObject.GetComponent<Rigidbody>().AddForce(direction.normalized * throwForce);
@@ -124,7 +150,7 @@ class Player : MonoBehaviour {
                 if (hitItems.Length > 0) {
                     // pick the found item
                     Item target = hitItems[0].gameObject.GetComponent<Item>();
-                    if (target != null) {
+                    if (target != null && target.enabled) {
                         Transform localTransformForPlacement = itemToHandTransformsHash[target.itemId];
                         if (/*Vector3.Distance(target.transform.position, transform.position) <= grabbingRange*/ true) {
                             target.transform.position = holdingPos.position;
