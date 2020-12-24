@@ -48,7 +48,7 @@ public class Item : MonoBehaviour
         else if (isHovered) {
             if (hoverInstance == null) {
                 hoverInstance = Instantiate(hoverToolTip, transform.position + new Vector3(0, hoverHeight, 0), Quaternion.identity);
-                hoverInstance.transform.parent = transform;
+                hoverInstance.transform.SetParent(transform, true);
             }
             else {
                 hoverInstance.transform.position = transform.position + new Vector3(0, hoverHeight, 0);

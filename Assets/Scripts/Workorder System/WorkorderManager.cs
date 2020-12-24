@@ -83,12 +83,16 @@ public class WorkorderManager : MonoBehaviour
         
         // check order deadline
         foreach (KeyValuePair<string, List<Order>> list in workLists) {
+            List<Order> toDelete = new List<Order>();
             foreach (Order od in list.Value) {
                 if (Time.time - od.startTime > od.duration) {
                     GameManager.instance.OrderOverdue();
-                    list.Value.Remove(od);
-                    ordersToShow.Remove(od);
+                    toDelete.Add(od);
                 }
+            }
+            foreach (Order od in toDelete) {
+                list.Value.Remove(od);
+                ordersToShow.Remove(od);
             }
         }
     }
